@@ -571,11 +571,11 @@ data %>%
 # statistical inference
 
 shapiro.test(data$CP1)
-# W = 0.87722, p-value = 1.522e-15
+# W = 0.83535, p-value < 2.2e-16
 ks.test(scale(data$CP1), "pnorm")
-# D = 0.20773, p-value = 9.326e-13
+# D = 0.23347, p-value = 6.661e-16
 lillie.test(data$CP1)
-# D = 0.20773, p-value < 2.2e-16
+# D = 0.23347, p-value < 2.2e-16
 
 qqnorm(data$CP1, las=1, pch=18, 
        main="CP1 of the teachers", font.main=1,
@@ -583,11 +583,11 @@ qqnorm(data$CP1, las=1, pch=18,
 qqline(data$CP1)
 
 shapiro.test(data_col$CP1)
-# W = 0.90395, p-value = 5.124e-09
+# W = 0.86211, p-value = 2.854e-11
 ks.test(scale(data_col$CP1), "pnorm")
-# D = 0.1556, p-value = 0.0005859
+# D = 0.19792, p-value = 3.846e-06
 lillie.test(data_col$CP1)
-# D = 0.1556, p-value = 1.101e-10
+# D = 0.19792, p-value < 2.2e-16
 
 qqnorm(data_col$CP1, las=1, pch=18, 
        main="CP1 col of the teachers", font.main=1,
@@ -595,11 +595,11 @@ qqnorm(data_col$CP1, las=1, pch=18,
 qqline(data_col$CP1)
 
 shapiro.test(data_uclm$CP1)
-# W = 0.81661, p-value = 6.135e-13
+# W = 0.78814, p-value = 6.742e-14
 ks.test(scale(data_uclm$CP1), "pnorm")
-# D = 0.23566, p-value = 3.425e-08
+# D = 0.2806, p-value = 2.673e-11
 lillie.test(data_uclm$CP1)
-# D = 0.23566, p-value < 2.2e-16
+# D = 0.2806, p-value < 2.2e-16
 
 qqnorm(data_uclm$CP1, las=1, pch=18, 
        main="age uclm of the teachers", font.main=1,
@@ -611,7 +611,7 @@ wilcox.test(data_col$CP1,
             data_uclm$CP1,paired = F,
             exact = F,correct = T,conf.int = 0.95)
 
-# W = 7476.5, p-value = 4.354e-13
+# W = 10052, p-value = 4.244e-05
 # result of the non-parametric test
 # there are statistically significant differences
 
@@ -627,18 +627,573 @@ var.test(x = data_col$CP1,
 bartlett.test(list(data_col$CP1,
                    data_uclm$CP1))
 
-z.test(x = data_col$CP1, y = data_uclm$CP1, # Two samples with normal distribution
-       alt = "two.sided",                 # Dos colas
-       mu = 0,                            # H_0: mu_1 - mu_2 = 0
-       sigma.x = sd(data_col$CP1),         # desviación estándar m
-       sigma.y = sd(data_uclm$CP1),        # desviación estandar n
+z.test(x = data_col %>%
+         select(CP1)%>%
+         na.omit()%>%
+         unlist(), y = data_uclm %>%
+         select(CP1)%>%
+         na.omit()%>%
+         unlist(),                                      # Two samples with normal distribution
+       alt = "two.sided",                               # Dos colas
+       mu = 0,                                          # H_0: mu_1 - mu_2 = 0
+       sigma.x = sd(data_col$CP1,na.rm = TRUE),         # desviación estándar m
+       sigma.y = sd(data_uclm$CP1,na.rm = TRUE),        # desviación estandar n
        conf.level = 0.95)
-# z = -8.2653, p-value < 2.2e-16
+# z = -4.5982, p-value = 4.263e-06
 
 t.test(x = data_col$CP1,
        y = data_uclm$CP1,
        alternative = "two.sided", 
        mu = 0, var.equal = FALSE, 
        conf.level = 0.95)
-# t = -8.2653, df = 296.04, p-value = 4.737e-15
+# t = -4.5982, df = 310.67, p-value = 6.211e-06
 
+# CP2 conoces: Hojas de cálculo (Excel, Google Sheets, LibreOffice Calc,…) ----
+
+data %>%
+  select(Paises,CP2)%>%
+  na.omit()%>%
+  summarise(n = length(CP2),
+            media = mean(CP2),
+            sd = sd(CP2),
+            mediana = median(CP2),
+            min = min(CP2),
+            max = max(CP2))
+
+# n media    sd mediana   min   max
+# 327  3.43  1.11       3     1     5
+
+data %>%
+  select(Paises,CP2)%>%
+  na.omit()%>%
+  group_by(Paises)%>%
+  summarise(n = length(CP2),
+            media = mean(CP2),
+            sd = sd(CP2),
+            mediana = median(CP2),
+            min = min(CP2),
+            max = max(CP2))
+
+# Paises       n media    sd mediana   min   max
+# Colombia   168  3.62  1.04       4     1     5
+# España     159  3.23  1.14       3     1     5
+
+# statistical inference
+
+shapiro.test(data$CP2)
+# W = 0.90304, p-value = 1.263e-13
+ks.test(scale(data$CP2), "pnorm")
+# D = 0.18084, p-value = 1.029e-09
+lillie.test(data$CP2)
+# D = 0.18084, p-value < 2.2e-16
+
+qqnorm(data$CP2, las=1, pch=18, 
+       main="CP2 of the teachers", font.main=1,
+       xlab="Theoretical quantiles", ylab="Sample quantiles") 
+qqline(data$CP2)
+
+shapiro.test(data_col$CP2)
+# W = 0.89196, p-value = 1.017e-09
+ks.test(scale(data_col$CP2), "pnorm")
+# D = 0.19688, p-value = 4.411e-06
+lillie.test(data_col$CP2)
+# D = 0.19688, p-value < 2.2e-16
+
+qqnorm(data_col$CP2, las=1, pch=18, 
+       main="CP2 col of the teachers", font.main=1,
+       xlab="Theoretical quantiles", ylab="Sample quantiles") 
+qqline(data_col$CP2)
+
+shapiro.test(data_uclm$CP2)
+# W = 0.90726, p-value = 1.668e-08
+ks.test(scale(data_uclm$CP2), "pnorm")
+# D = 0.19702, p-value = 8.712e-06
+lillie.test(data_uclm$CP2)
+# D = 0.19702, p-value < 2.2e-16
+
+qqnorm(data_uclm$CP2, las=1, pch=18, 
+       main="age uclm of the teachers", font.main=1,
+       xlab="Theoretical quantiles", ylab="Sample quantiles") 
+qqline(data_uclm$CP2)
+
+# non-parametric test
+wilcox.test(data_col$CP2,
+            data_uclm$CP2,paired = F,
+            exact = F,correct = T,conf.int = 0.95)
+
+# W = 15948, p-value = 0.0017
+# result of the non-parametric test
+# there are statistically significant differences
+
+fligner.test(list(data_col$CP2,
+                  data_uclm$CP2))
+
+leveneTest(CP2 ~ Paises, data = data,
+           center = "median")
+
+var.test(x = data_col$CP2,
+         y = data_uclm$CP2)
+
+bartlett.test(list(data_col$CP2,
+                   data_uclm$CP2))
+
+z.test(x = data_col %>%
+         select(CP2)%>%
+         na.omit()%>%
+         unlist(), y = data_uclm %>%
+         select(CP2)%>%
+         na.omit()%>%
+         unlist(),                                      # Two samples with normal distribution
+       alt = "two.sided",                               # Dos colas
+       mu = 0,                                          # H_0: mu_1 - mu_2 = 0
+       sigma.x = sd(data_col$CP2,na.rm = TRUE),         # desviación estándar m
+       sigma.y = sd(data_uclm$CP2,na.rm = TRUE),        # desviación estandar n
+       conf.level = 0.95)
+# z = 3.1955, p-value = 0.001396
+
+t.test(x = data_col$CP2,
+       y = data_uclm$CP2,
+       alternative = "two.sided", 
+       mu = 0, var.equal = FALSE, 
+       conf.level = 0.95)
+# t = 3.1955, df = 317.68, p-value = 0.001536
+
+# CP3 conoces: Bases de datos (Access, Base, nuBuilder,…) ----
+
+data %>%
+  select(Paises,CP3)%>%
+  na.omit()%>%
+  summarise(n = length(CP3),
+            media = mean(CP3),
+            sd = sd(CP3),
+            mediana = median(CP3),
+            min = min(CP3),
+            max = max(CP3))
+
+# n media    sd mediana   min   max
+# 325  2.42  1.19       2     1     5
+
+data %>%
+  select(Paises,CP3)%>%
+  na.omit()%>%
+  group_by(Paises)%>%
+  summarise(n = length(CP3),
+            media = mean(CP3),
+            sd = sd(CP3),
+            mediana = median(CP3),
+            min = min(CP3),
+            max = max(CP3))
+
+# Paises       n media    sd mediana   min   max
+# Colombia   168  2.65  1.18       3     1     5
+# España     157  2.16  1.15       2     1     5
+
+# statistical inference
+
+shapiro.test(data$CP3)
+# W = 0.88367, p-value = 5.299e-15
+ks.test(scale(data$CP3), "pnorm")
+# D = 0.17206, p-value = 8.784e-09
+lillie.test(data$CP3)
+# D = 0.17206, p-value < 2.2e-16
+
+qqnorm(data$CP3, las=1, pch=18, 
+       main="CP3 of the teachers", font.main=1,
+       xlab="Theoretical quantiles", ylab="Sample quantiles") 
+qqline(data$CP3)
+
+shapiro.test(data_col$CP3)
+# W = 0.90616, p-value = 6.99e-09
+ks.test(scale(data_col$CP3), "pnorm")
+# D = 0.16312, p-value = 0.000262
+lillie.test(data_col$CP3)
+# D = 0.16312, p-value = 8.374e-12
+
+qqnorm(data_col$CP3, las=1, pch=18, 
+       main="CP3 col of the teachers", font.main=1,
+       xlab="Theoretical quantiles", ylab="Sample quantiles") 
+qqline(data_col$CP3)
+
+shapiro.test(data_uclm$CP3)
+# W = 0.84611, p-value = 1.513e-11
+ks.test(scale(data_uclm$CP3), "pnorm")
+# D = 0.2314, p-value = 9.978e-08
+lillie.test(data_uclm$CP3)
+# D = 0.2314, p-value < 2.2e-16
+
+qqnorm(data_uclm$CP3, las=1, pch=18, 
+       main="age uclm of the teachers", font.main=1,
+       xlab="Theoretical quantiles", ylab="Sample quantiles") 
+qqline(data_uclm$CP3)
+
+# non-parametric test
+wilcox.test(data_col$CP3,
+            data_uclm$CP3,paired = F,
+            exact = F,correct = T,conf.int = 0.95)
+
+# W = 16324, p-value = 0.0001284
+# result of the non-parametric test
+# there are statistically significant differences
+
+fligner.test(list(data_col$CP3,
+                  data_uclm$CP3))
+
+leveneTest(CP3 ~ Paises, data = data,
+           center = "median")
+
+var.test(x = data_col$CP3,
+         y = data_uclm$CP3)
+
+bartlett.test(list(data_col$CP3,
+                   data_uclm$CP3))
+
+z.test(x = data_col %>%
+         select(CP3)%>%
+         na.omit()%>%
+         unlist(), y = data_uclm %>%
+         select(CP3)%>%
+         na.omit()%>%
+         unlist(),                                      # Two samples with normal distribution
+       alt = "two.sided",                               # Dos colas
+       mu = 0,                                          # H_0: mu_1 - mu_2 = 0
+       sigma.x = sd(data_col$CP3,na.rm = TRUE),         # desviación estándar m
+       sigma.y = sd(data_uclm$CP3,na.rm = TRUE),        # desviación estandar n
+       conf.level = 0.95)
+# z = 3.8321, p-value = 0.0001271
+
+t.test(x = data_col$CP3,
+       y = data_uclm$CP3,
+       alternative = "two.sided", 
+       mu = 0, var.equal = FALSE, 
+       conf.level = 0.95)
+# t = 3.8321, df = 322.34, p-value = 0.0001527
+
+# CP4 conoces: Creadores de presentaciones visuales (PowerPoint, Google Slides,…) ----
+
+data %>%
+  select(Paises,CP4)%>%
+  na.omit()%>%
+  summarise(n = length(CP4),
+            media = mean(CP4),
+            sd = sd(CP4),
+            mediana = median(CP4),
+            min = min(CP4),
+            max = max(CP4))
+
+# n media    sd mediana   min   max
+# 327  4.21 0.949       4     1     5
+
+data %>%
+  select(Paises,CP4)%>%
+  na.omit()%>%
+  group_by(Paises)%>%
+  summarise(n = length(CP4),
+            media = mean(CP4),
+            sd = sd(CP4),
+            mediana = median(CP4),
+            min = min(CP4),
+            max = max(CP4))
+
+# Paises       n media    sd mediana   min   max
+# Colombia   168  3.93 1.05        4     1     5
+# España     159  4.50 0.728       5     1     5
+
+# statistical inference
+
+shapiro.test(data$CP4)
+# W = 0.78113, p-value < 2.2e-16
+ks.test(scale(data$CP4), "pnorm")
+# D = 0.28722, p-value < 2.2e-16
+lillie.test(data$CP4)
+# D = 0.28722, p-value < 2.2e-16
+
+qqnorm(data$CP4, las=1, pch=18, 
+       main="CP4 of the teachers", font.main=1,
+       xlab="Theoretical quantiles", ylab="Sample quantiles") 
+qqline(data$CP4)
+
+shapiro.test(data_col$CP4)
+# W = 0.84433, p-value = 4.31e-12
+ks.test(scale(data_col$CP4), "pnorm")
+# D = 0.22573, p-value = 7.339e-08
+lillie.test(data_col$CP4)
+# D = 0.22573, p-value < 2.2e-16
+
+qqnorm(data_col$CP4, las=1, pch=18, 
+       main="CP4 col of the teachers", font.main=1,
+       xlab="Theoretical quantiles", ylab="Sample quantiles") 
+qqline(data_col$CP4)
+
+shapiro.test(data_uclm$CP4)
+# W = 0.68569, p-value < 2.2e-16
+ks.test(scale(data_uclm$CP4), "pnorm")
+# D = 0.35902, p-value < 2.2e-16
+lillie.test(data_uclm$CP4)
+# D = 0.35902, p-value < 2.2e-16
+
+qqnorm(data_uclm$CP4, las=1, pch=18, 
+       main="age uclm of the teachers", font.main=1,
+       xlab="Theoretical quantiles", ylab="Sample quantiles") 
+qqline(data_uclm$CP4)
+
+# non-parametric test
+wilcox.test(data_col$CP4,
+            data_uclm$CP4,paired = F,
+            exact = F,correct = T,conf.int = 0.95)
+
+# W = 9319, p-value = 3.064e-07
+# result of the non-parametric test
+# there are statistically significant differences
+
+fligner.test(list(data_col$CP4,
+                  data_uclm$CP4))
+
+leveneTest(CP4 ~ Paises, data = data,
+           center = "median")
+
+var.test(x = data_col$CP4,
+         y = data_uclm$CP4)
+
+bartlett.test(list(data_col$CP4,
+                   data_uclm$CP4))
+
+z.test(x = data_col %>%
+         select(CP4)%>%
+         na.omit()%>%
+         unlist(), y = data_uclm %>%
+         select(CP4)%>%
+         na.omit()%>%
+         unlist(),                                      # Two samples with normal distribution
+       alt = "two.sided",                               # Dos colas
+       mu = 0,                                          # H_0: mu_1 - mu_2 = 0
+       sigma.x = sd(data_col$CP4,na.rm = TRUE),         # desviación estándar m
+       sigma.y = sd(data_uclm$CP4,na.rm = TRUE),        # desviación estandar n
+       conf.level = 0.95)
+# z = -5.6511, p-value = 1.594e-08
+
+t.test(x = data_col$CP4,
+       y = data_uclm$CP4,
+       alternative = "two.sided", 
+       mu = 0, var.equal = FALSE, 
+       conf.level = 0.95)
+# t = -5.6511, df = 298.31, p-value = 3.724e-08
+
+# CP5 conoces: Programas de edición de imagen (Paint, Adobe PhotoShop, Gimp,…) ----
+
+data %>%
+  select(Paises,CP5)%>%
+  na.omit()%>%
+  summarise(n = length(CP5),
+            media = mean(CP5),
+            sd = sd(CP5),
+            mediana = median(CP5),
+            min = min(CP5),
+            max = max(CP5))
+
+# n media    sd mediana   min   max
+# 326  3.60  1.09       4     1     5
+
+data %>%
+  select(Paises,CP5)%>%
+  na.omit()%>%
+  group_by(Paises)%>%
+  summarise(n = length(CP5),
+            media = mean(CP5),
+            sd = sd(CP5),
+            mediana = median(CP5),
+            min = min(CP5),
+            max = max(CP5))
+
+# Paises       n media    sd mediana   min   max
+# Colombia   168  3.65  1.11       4     1     5
+# España     158  3.55  1.08       4     1     5
+
+# statistical inference
+
+shapiro.test(data$CP5)
+# W = 0.88993, p-value = 1.381e-14
+ks.test(scale(data$CP5), "pnorm")
+# D = 0.1874, p-value = 2.272e-10
+lillie.test(data$CP5)
+# D = 0.1874, p-value < 2.2e-16
+
+qqnorm(data$CP5, las=1, pch=18, 
+       main="CP5 of the teachers", font.main=1,
+       xlab="Theoretical quantiles", ylab="Sample quantiles") 
+qqline(data$CP5)
+
+shapiro.test(data_col$CP5)
+# W = 0.88559, p-value = 4.516e-10
+ks.test(scale(data_col$CP5), "pnorm")
+# D = 0.1881, p-value = 1.374e-05
+lillie.test(data_col$CP5)
+# D = 0.1881, p-value = 6.046e-16
+
+qqnorm(data_col$CP5, las=1, pch=18, 
+       main="CP5 col of the teachers", font.main=1,
+       xlab="Theoretical quantiles", ylab="Sample quantiles") 
+qqline(data_col$CP5)
+
+shapiro.test(data_uclm$CP5)
+# W = 0.89129, p-value = 2.181e-09
+ks.test(scale(data_uclm$CP5), "pnorm")
+# D = 0.18665, p-value = 3.309e-05
+lillie.test(data_uclm$CP5)
+# D = 0.18665, p-value = 1.008e-14
+
+qqnorm(data_uclm$CP5, las=1, pch=18, 
+       main="age uclm of the teachers", font.main=1,
+       xlab="Theoretical quantiles", ylab="Sample quantiles") 
+qqline(data_uclm$CP5)
+
+# non-parametric test
+wilcox.test(data_col$CP5,
+            data_uclm$CP5,paired = F,
+            exact = F,correct = T,conf.int = 0.95)
+
+# W = 13998, p-value = 0.3753
+# result of the non-parametric test
+# there are statistically significant differences
+
+fligner.test(list(data_col$CP5,
+                  data_uclm$CP5))
+
+leveneTest(CP5 ~ Paises, data = data,
+           center = "median")
+
+var.test(x = data_col$CP5,
+         y = data_uclm$CP5)
+
+bartlett.test(list(data_col$CP5,
+                   data_uclm$CP5))
+
+z.test(x = data_col %>%
+         select(CP5)%>%
+         na.omit()%>%
+         unlist(), y = data_uclm %>%
+         select(CP5)%>%
+         na.omit()%>%
+         unlist(),                                      # Two samples with normal distribution
+       alt = "two.sided",                               # Dos colas
+       mu = 0,                                          # H_0: mu_1 - mu_2 = 0
+       sigma.x = sd(data_col$CP5,na.rm = TRUE),         # desviación estándar m
+       sigma.y = sd(data_uclm$CP5,na.rm = TRUE),        # desviación estandar n
+       conf.level = 0.95)
+# z = 0.86026, p-value = 0.3896
+
+t.test(x = data_col$CP5,
+       y = data_uclm$CP5,
+       alternative = "two.sided", 
+       mu = 0, var.equal = TRUE, 
+       conf.level = 0.95)
+# t = 0.85965, df = 324, p-value = 0.3906
+
+# CP6 conoces: Programas de edición de audio (Audacity, Ocenaudio, Reaper, …) ----
+
+data %>%
+  select(Paises,CP6)%>%
+  na.omit()%>%
+  summarise(n = length(CP6),
+            media = mean(CP6),
+            sd = sd(CP6),
+            mediana = median(CP6),
+            min = min(CP6),
+            max = max(CP6))
+
+# n media    sd mediana   min   max
+# 327  2.60  1.23       3     1     5
+
+data %>%
+  select(Paises,CP6)%>%
+  na.omit()%>%
+  group_by(Paises)%>%
+  summarise(n = length(CP6),
+            media = mean(CP6),
+            sd = sd(CP6),
+            mediana = median(CP6),
+            min = min(CP6),
+            max = max(CP6))
+
+# Paises       n media    sd mediana   min   max
+# Colombia   168  2.63  1.22       3     1     5
+# España     159  2.56  1.26       2     1     5
+
+# statistical inference
+
+shapiro.test(data$CP6)
+# W = 0.8962, p-value = 3.765e-14
+ks.test(scale(data$CP6), "pnorm")
+# D = 0.17479, p-value = 4.206e-09
+lillie.test(data$CP6)
+# D = 0.17479, p-value < 2.2e-16
+
+qqnorm(data$CP6, las=1, pch=18, 
+       main="CP6 of the teachers", font.main=1,
+       xlab="Theoretical quantiles", ylab="Sample quantiles") 
+qqline(data$CP6)
+
+shapiro.test(data_col$CP6)
+# W = 0.90033, p-value = 3.105e-09
+ks.test(scale(data_col$CP6), "pnorm")
+# D = 0.16682, p-value = 0.0001739
+lillie.test(data_col$CP6)
+# D = 0.16682, p-value = 2.242e-12
+
+qqnorm(data_col$CP6, las=1, pch=18, 
+       main="CP6 col of the teachers", font.main=1,
+       xlab="Theoretical quantiles", ylab="Sample quantiles") 
+qqline(data_col$CP6)
+
+shapiro.test(data_uclm$CP6)
+# W = 0.88669, p-value = 1.127e-09
+ks.test(scale(data_uclm$CP6), "pnorm")
+# D = 0.2004, p-value = 5.683e-06
+lillie.test(data_uclm$CP6)
+# D = 0.2004, p-value < 2.2e-16
+
+qqnorm(data_uclm$CP6, las=1, pch=18, 
+       main="age uclm of the teachers", font.main=1,
+       xlab="Theoretical quantiles", ylab="Sample quantiles") 
+qqline(data_uclm$CP6)
+
+# non-parametric test
+wilcox.test(data_col$CP6,
+            data_uclm$CP6,paired = F,
+            exact = F,correct = T,conf.int = 0.95)
+
+# W = 13956, p-value = 0.47
+# result of the non-parametric test
+# there are statistically significant differences
+
+fligner.test(list(data_col$CP6,
+                  data_uclm$CP6))
+
+leveneTest(CP6 ~ Paises, data = data,
+           center = "median")
+
+var.test(x = data_col$CP6,
+         y = data_uclm$CP6)
+
+bartlett.test(list(data_col$CP6,
+                   data_uclm$CP6))
+
+z.test(x = data_col %>%
+         select(CP6)%>%
+         na.omit()%>%
+         unlist(), y = data_uclm %>%
+         select(CP6)%>%
+         na.omit()%>%
+         unlist(),                                      # Two samples with normal distribution
+       alt = "two.sided",                               # Dos colas
+       mu = 0,                                          # H_0: mu_1 - mu_2 = 0
+       sigma.x = sd(data_col$CP6,na.rm = TRUE),         # desviación estándar m
+       sigma.y = sd(data_uclm$CP6,na.rm = TRUE),        # desviación estandar n
+       conf.level = 0.95)
+# z = 0.52032, p-value = 0.6028
+
+t.test(x = data_col$CP6,
+       y = data_uclm$CP6,
+       alternative = "two.sided", 
+       mu = 0, var.equal = TRUE, 
+       conf.level = 0.95)
+# t = 0.52078, df = 325, p-value = 0.6029

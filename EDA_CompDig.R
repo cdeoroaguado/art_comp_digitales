@@ -2781,42 +2781,9 @@ wilcox.test(data_col$UP1,
             data_uclm$UP1,paired = F,
             exact = F,correct = T,conf.int = 0.95)
 
-# W = 10052, p-value = 4.244e-05
+# W = 9523, p-value = 1.909e-06
 # result of the non-parametric test
 # there are statistically significant differences
-
-fligner.test(list(data_col$UP1,
-                  data_uclm$UP1))
-
-leveneTest(UP1 ~ Paises, data = data,
-           center = "median")
-
-var.test(x = data_col$UP1,
-         y = data_uclm$UP1)
-
-bartlett.test(list(data_col$UP1,
-                   data_uclm$UP1))
-
-z.test(x = data_col %>%
-         select(UP1)%>%
-         na.omit()%>%
-         unlist(), y = data_uclm %>%
-         select(UP1)%>%
-         na.omit()%>%
-         unlist(),                                      # Two samples with normal distribution
-       alt = "two.sided",                               # Dos colas
-       mu = 0,                                          # H_0: mu_1 - mu_2 = 0
-       sigma.x = sd(data_col$UP1,na.rm = TRUE),         # desviación estándar m
-       sigma.y = sd(data_uclm$UP1,na.rm = TRUE),        # desviación estandar n
-       conf.level = 0.95)
-# z = -4.5982, p-value = 4.263e-06
-
-t.test(x = data_col$UP1,
-       y = data_uclm$UP1,
-       alternative = "two.sided", 
-       mu = 0, var.equal = FALSE, 
-       conf.level = 0.95)
-# t = -4.5982, df = 310.67, p-value = 6.211e-06
 
 # UP2 usas: Hojas de cálculo (Excel, Google Sheets, LibreOffice Calc,…) ----
 
@@ -2875,10 +2842,9 @@ wilcox.test(data_col$UP2,
             data_uclm$UP2,paired = F,
             exact = F,correct = T,conf.int = 0.95)
 
-# W = 15948, p-value = 0.0017
+# W = 19232, p-value = 2.356e-13
 # result of the non-parametric test
 # there are statistically significant differences
-
 
 # UP3 usas: Bases de datos (Access, Base, nuBuilder,…) ----
 
@@ -2937,7 +2903,7 @@ wilcox.test(data_col$UP3,
             data_uclm$UP3,paired = F,
             exact = F,correct = T,conf.int = 0.95)
 
-# W = 16324, p-value = 0.0001284
+# W = 17500, p-value = 2.529e-07
 # result of the non-parametric test
 # there are statistically significant differences
 
@@ -2976,11 +2942,8 @@ qqnorm(data$UP4, las=1, pch=18,
 qqline(data$UP4)
 
 shapiro.test(data_col$UP4)
-# W = 0.84433, p-value = 4.31e-12
 ks.test(scale(data_col$UP4), "pnorm")
-# D = 0.22573, p-value = 7.339e-08
 lillie.test(data_col$UP4)
-# D = 0.22573, p-value < 2.2e-16
 
 qqnorm(data_col$UP4, las=1, pch=18, 
        main="UP4 col of the teachers", font.main=1,
@@ -2988,11 +2951,8 @@ qqnorm(data_col$UP4, las=1, pch=18,
 qqline(data_col$UP4)
 
 shapiro.test(data_uclm$UP4)
-# W = 0.68569, p-value < 2.2e-16
 ks.test(scale(data_uclm$UP4), "pnorm")
-# D = 0.35902, p-value < 2.2e-16
 lillie.test(data_uclm$UP4)
-# D = 0.35902, p-value < 2.2e-16
 
 qqnorm(data_uclm$UP4, las=1, pch=18, 
        main="age uclm of the teachers", font.main=1,
@@ -3020,9 +2980,6 @@ data %>%
             min = min(UP5),
             max = max(UP5))
 
-# n media    sd mediana   min   max
-# 326  3.60  1.09       4     1     5
-
 data %>%
   select(Paises,UP5)%>%
   na.omit()%>%
@@ -3034,18 +2991,11 @@ data %>%
             min = min(UP5),
             max = max(UP5))
 
-# Paises       n media    sd mediana   min   max
-# Colombia   168  3.65  1.11       4     1     5
-# España     158  3.55  1.08       4     1     5
-
 # statistical inference
 
 shapiro.test(data$UP5)
-# W = 0.88993, p-value = 1.381e-14
 ks.test(scale(data$UP5), "pnorm")
-# D = 0.1874, p-value = 2.272e-10
 lillie.test(data$UP5)
-# D = 0.1874, p-value < 2.2e-16
 
 qqnorm(data$UP5, las=1, pch=18, 
        main="UP5 of the teachers", font.main=1,
@@ -3053,11 +3003,8 @@ qqnorm(data$UP5, las=1, pch=18,
 qqline(data$UP5)
 
 shapiro.test(data_col$UP5)
-# W = 0.88559, p-value = 4.516e-10
 ks.test(scale(data_col$UP5), "pnorm")
-# D = 0.1881, p-value = 1.374e-05
 lillie.test(data_col$UP5)
-# D = 0.1881, p-value = 6.046e-16
 
 qqnorm(data_col$UP5, las=1, pch=18, 
        main="UP5 col of the teachers", font.main=1,
@@ -3065,11 +3012,8 @@ qqnorm(data_col$UP5, las=1, pch=18,
 qqline(data_col$UP5)
 
 shapiro.test(data_uclm$UP5)
-# W = 0.89129, p-value = 2.181e-09
 ks.test(scale(data_uclm$UP5), "pnorm")
-# D = 0.18665, p-value = 3.309e-05
 lillie.test(data_uclm$UP5)
-# D = 0.18665, p-value = 1.008e-14
 
 qqnorm(data_uclm$UP5, las=1, pch=18, 
        main="age uclm of the teachers", font.main=1,
@@ -3081,7 +3025,7 @@ wilcox.test(data_col$UP5,
             data_uclm$UP5,paired = F,
             exact = F,correct = T,conf.int = 0.95)
 
-# W = 13998, p-value = 0.3753
+# W = 16130, p-value = 0.0002312
 # result of the non-parametric test
 # there are statistically significant differences
 
@@ -3099,9 +3043,6 @@ data %>%
             min = min(UP6),
             max = max(UP6))
 
-# n media    sd mediana   min   max
-# 327  2.60  1.23       3     1     5
-
 data %>%
   select(Paises,UP6)%>%
   na.omit()%>%
@@ -3113,18 +3054,11 @@ data %>%
             min = min(UP6),
             max = max(UP6))
 
-# Paises       n media    sd mediana   min   max
-# Colombia   168  2.63  1.22       3     1     5
-# España     159  2.56  1.26       2     1     5
-
 # statistical inference
 
 shapiro.test(data$UP6)
-# W = 0.8962, p-value = 3.765e-14
 ks.test(scale(data$UP6), "pnorm")
-# D = 0.17479, p-value = 4.206e-09
 lillie.test(data$UP6)
-# D = 0.17479, p-value < 2.2e-16
 
 qqnorm(data$UP6, las=1, pch=18, 
        main="UP6 of the teachers", font.main=1,
@@ -3132,11 +3066,8 @@ qqnorm(data$UP6, las=1, pch=18,
 qqline(data$UP6)
 
 shapiro.test(data_col$UP6)
-# W = 0.90033, p-value = 3.105e-09
 ks.test(scale(data_col$UP6), "pnorm")
-# D = 0.16682, p-value = 0.0001739
 lillie.test(data_col$UP6)
-# D = 0.16682, p-value = 2.242e-12
 
 qqnorm(data_col$UP6, las=1, pch=18, 
        main="UP6 col of the teachers", font.main=1,
@@ -3144,11 +3075,8 @@ qqnorm(data_col$UP6, las=1, pch=18,
 qqline(data_col$UP6)
 
 shapiro.test(data_uclm$UP6)
-# W = 0.88669, p-value = 1.127e-09
 ks.test(scale(data_uclm$UP6), "pnorm")
-# D = 0.2004, p-value = 5.683e-06
 lillie.test(data_uclm$UP6)
-# D = 0.2004, p-value < 2.2e-16
 
 qqnorm(data_uclm$UP6, las=1, pch=18, 
        main="age uclm of the teachers", font.main=1,
@@ -3160,7 +3088,7 @@ wilcox.test(data_col$UP6,
             data_uclm$UP6,paired = F,
             exact = F,correct = T,conf.int = 0.95)
 
-# W = 13956, p-value = 0.47
+# W = 16752, p-value = 2.38e-05
 # result of the non-parametric test
 # there are statistically significant differences
 
@@ -3176,9 +3104,6 @@ data %>%
             min = min(UP7),
             max = max(UP7))
 
-# n media    sd mediana   min   max
-# 327  2.60  1.23       3     1     5
-
 data %>%
   select(Paises,UP7)%>%
   na.omit()%>%
@@ -3190,18 +3115,11 @@ data %>%
             min = min(UP7),
             max = max(UP7))
 
-# Paises       n media    sd mediana   min   max
-# Colombia   168  2.63  1.22       3     1     5
-# España     159  2.56  1.26       2     1     5
-
 # statistical inference
 
 shapiro.test(data$UP7)
-# W = 0.8962, p-value = 3.765e-14
 ks.test(scale(data$UP7), "pnorm")
-# D = 0.17479, p-value = 4.206e-09
 lillie.test(data$UP7)
-# D = 0.17479, p-value < 2.2e-16
 
 qqnorm(data$UP7, las=1, pch=18, 
        main="UP7 of the teachers", font.main=1,
@@ -3209,11 +3127,8 @@ qqnorm(data$UP7, las=1, pch=18,
 qqline(data$UP7)
 
 shapiro.test(data_col$UP7)
-# W = 0.90033, p-value = 3.105e-09
 ks.test(scale(data_col$UP7), "pnorm")
-# D = 0.16682, p-value = 0.0001739
 lillie.test(data_col$UP7)
-# D = 0.16682, p-value = 2.242e-12
 
 qqnorm(data_col$UP7, las=1, pch=18, 
        main="UP7 col of the teachers", font.main=1,
@@ -3221,11 +3136,8 @@ qqnorm(data_col$UP7, las=1, pch=18,
 qqline(data_col$UP7)
 
 shapiro.test(data_uclm$UP7)
-# W = 0.88669, p-value = 1.127e-09
 ks.test(scale(data_uclm$UP7), "pnorm")
-# D = 0.2004, p-value = 5.683e-06
 lillie.test(data_uclm$UP7)
-# D = 0.2004, p-value < 2.2e-16
 
 qqnorm(data_uclm$UP7, las=1, pch=18, 
        main="age uclm of the teachers", font.main=1,
@@ -3237,7 +3149,7 @@ wilcox.test(data_col$UP7,
             data_uclm$UP7,paired = F,
             exact = F,correct = T,conf.int = 0.95)
 
-# W = 13956, p-value = 0.47
+# W = 15123, p-value = 0.02471
 # result of the non-parametric test
 # there are statistically significant differences
 
@@ -3253,9 +3165,6 @@ data %>%
             min = min(UP8),
             max = max(UP8))
 
-# n media    sd mediana   min   max
-# 327  2.60  1.23       3     1     5
-
 data %>%
   select(Paises,UP8)%>%
   na.omit()%>%
@@ -3267,18 +3176,11 @@ data %>%
             min = min(UP8),
             max = max(UP8))
 
-# Paises       n media    sd mediana   min   max
-# Colombia   168  2.63  1.22       3     1     5
-# España     159  2.56  1.26       2     1     5
-
 # statistical inference
 
 shapiro.test(data$UP8)
-# W = 0.8962, p-value = 3.765e-14
 ks.test(scale(data$UP8), "pnorm")
-# D = 0.17479, p-value = 4.206e-09
 lillie.test(data$UP8)
-# D = 0.17479, p-value < 2.2e-16
 
 qqnorm(data$UP8, las=1, pch=18, 
        main="UP8 of the teachers", font.main=1,
@@ -3286,11 +3188,8 @@ qqnorm(data$UP8, las=1, pch=18,
 qqline(data$UP8)
 
 shapiro.test(data_col$UP8)
-# W = 0.90033, p-value = 3.105e-09
 ks.test(scale(data_col$UP8), "pnorm")
-# D = 0.16682, p-value = 0.0001739
 lillie.test(data_col$UP8)
-# D = 0.16682, p-value = 2.242e-12
 
 qqnorm(data_col$UP8, las=1, pch=18, 
        main="UP8 col of the teachers", font.main=1,
@@ -3298,11 +3197,8 @@ qqnorm(data_col$UP8, las=1, pch=18,
 qqline(data_col$UP8)
 
 shapiro.test(data_uclm$UP8)
-# W = 0.88669, p-value = 1.127e-09
 ks.test(scale(data_uclm$UP8), "pnorm")
-# D = 0.2004, p-value = 5.683e-06
 lillie.test(data_uclm$UP8)
-# D = 0.2004, p-value < 2.2e-16
 
 qqnorm(data_uclm$UP8, las=1, pch=18, 
        main="age uclm of the teachers", font.main=1,
@@ -3314,7 +3210,7 @@ wilcox.test(data_col$UP8,
             data_uclm$UP8,paired = F,
             exact = F,correct = T,conf.int = 0.95)
 
-# W = 13956, p-value = 0.47
+# W = 10926, p-value = 0.005603
 # result of the non-parametric test
 # there are statistically significant differences
 
@@ -3330,9 +3226,6 @@ data %>%
             min = min(UP9),
             max = max(UP9))
 
-# n media    sd mediana   min   max
-# 327  2.60  1.23       3     1     5
-
 data %>%
   select(Paises,UP9)%>%
   na.omit()%>%
@@ -3344,18 +3237,11 @@ data %>%
             min = min(UP9),
             max = max(UP9))
 
-# Paises       n media    sd mediana   min   max
-# Colombia   168  2.63  1.22       3     1     5
-# España     159  2.56  1.26       2     1     5
-
 # statistical inference
 
 shapiro.test(data$UP9)
-# W = 0.8962, p-value = 3.765e-14
 ks.test(scale(data$UP9), "pnorm")
-# D = 0.17479, p-value = 4.206e-09
 lillie.test(data$UP9)
-# D = 0.17479, p-value < 2.2e-16
 
 qqnorm(data$UP9, las=1, pch=18, 
        main="UP9 of the teachers", font.main=1,
@@ -3363,11 +3249,8 @@ qqnorm(data$UP9, las=1, pch=18,
 qqline(data$UP9)
 
 shapiro.test(data_col$UP9)
-# W = 0.90033, p-value = 3.105e-09
 ks.test(scale(data_col$UP9), "pnorm")
-# D = 0.16682, p-value = 0.0001739
 lillie.test(data_col$UP9)
-# D = 0.16682, p-value = 2.242e-12
 
 qqnorm(data_col$UP9, las=1, pch=18, 
        main="UP9 col of the teachers", font.main=1,
@@ -3375,11 +3258,8 @@ qqnorm(data_col$UP9, las=1, pch=18,
 qqline(data_col$UP9)
 
 shapiro.test(data_uclm$UP9)
-# W = 0.88669, p-value = 1.127e-09
 ks.test(scale(data_uclm$UP9), "pnorm")
-# D = 0.2004, p-value = 5.683e-06
 lillie.test(data_uclm$UP9)
-# D = 0.2004, p-value < 2.2e-16
 
 qqnorm(data_uclm$UP9, las=1, pch=18, 
        main="age uclm of the teachers", font.main=1,
@@ -3391,7 +3271,7 @@ wilcox.test(data_col$UP9,
             data_uclm$UP9,paired = F,
             exact = F,correct = T,conf.int = 0.95)
 
-# W = 13956, p-value = 0.47
+# W = 16578, p-value = 1.817e-05
 # result of the non-parametric test
 # there are statistically significant differences
 
@@ -3407,9 +3287,6 @@ data %>%
             min = min(UP10),
             max = max(UP10))
 
-# n media    sd mediana   min   max
-# 327  2.60  1.23       3     1     5
-
 data %>%
   select(Paises,UP10)%>%
   na.omit()%>%
@@ -3421,18 +3298,11 @@ data %>%
             min = min(UP10),
             max = max(UP10))
 
-# Paises       n media    sd mediana   min   max
-# Colombia   168  2.63  1.22       3     1     5
-# España     159  2.56  1.26       2     1     5
-
 # statistical inference
 
 shapiro.test(data$UP10)
-# W = 0.8962, p-value = 3.765e-14
 ks.test(scale(data$UP10), "pnorm")
-# D = 0.17479, p-value = 4.206e-09
 lillie.test(data$UP10)
-# D = 0.17479, p-value < 2.2e-16
 
 qqnorm(data$UP10, las=1, pch=18, 
        main="UP10 of the teachers", font.main=1,
@@ -3440,11 +3310,8 @@ qqnorm(data$UP10, las=1, pch=18,
 qqline(data$UP10)
 
 shapiro.test(data_col$UP10)
-# W = 0.90033, p-value = 3.105e-09
 ks.test(scale(data_col$UP10), "pnorm")
-# D = 0.16682, p-value = 0.0001739
 lillie.test(data_col$UP10)
-# D = 0.16682, p-value = 2.242e-12
 
 qqnorm(data_col$UP10, las=1, pch=18, 
        main="UP10 col of the teachers", font.main=1,
@@ -3452,11 +3319,8 @@ qqnorm(data_col$UP10, las=1, pch=18,
 qqline(data_col$UP10)
 
 shapiro.test(data_uclm$UP10)
-# W = 0.88669, p-value = 1.127e-09
 ks.test(scale(data_uclm$UP10), "pnorm")
-# D = 0.2004, p-value = 5.683e-06
 lillie.test(data_uclm$UP10)
-# D = 0.2004, p-value < 2.2e-16
 
 qqnorm(data_uclm$UP10, las=1, pch=18, 
        main="age uclm of the teachers", font.main=1,
@@ -3468,7 +3332,7 @@ wilcox.test(data_col$UP10,
             data_uclm$UP10,paired = F,
             exact = F,correct = T,conf.int = 0.95)
 
-# W = 13956, p-value = 0.47
+# W = 17824, p-value = 1.959e-08
 # result of the non-parametric test
 # there are statistically significant differences
 
@@ -3484,9 +3348,6 @@ data %>%
             min = min(UP11),
             max = max(UP11))
 
-# n media    sd mediana   min   max
-# 327  2.60  1.23       3     1     5
-
 data %>%
   select(Paises,UP11)%>%
   na.omit()%>%
@@ -3498,18 +3359,11 @@ data %>%
             min = min(UP11),
             max = max(UP11))
 
-# Paises       n media    sd mediana   min   max
-# Colombia   168  2.63  1.22       3     1     5
-# España     159  2.56  1.26       2     1     5
-
 # statistical inference
 
 shapiro.test(data$UP11)
-# W = 0.8962, p-value = 3.765e-14
 ks.test(scale(data$UP11), "pnorm")
-# D = 0.17479, p-value = 4.206e-09
 lillie.test(data$UP11)
-# D = 0.17479, p-value < 2.2e-16
 
 qqnorm(data$UP11, las=1, pch=18, 
        main="UP11 of the teachers", font.main=1,
@@ -3517,11 +3371,8 @@ qqnorm(data$UP11, las=1, pch=18,
 qqline(data$UP11)
 
 shapiro.test(data_col$UP11)
-# W = 0.90033, p-value = 3.105e-09
 ks.test(scale(data_col$UP11), "pnorm")
-# D = 0.16682, p-value = 0.0001739
 lillie.test(data_col$UP11)
-# D = 0.16682, p-value = 2.242e-12
 
 qqnorm(data_col$UP11, las=1, pch=18, 
        main="UP11 col of the teachers", font.main=1,
@@ -3529,11 +3380,8 @@ qqnorm(data_col$UP11, las=1, pch=18,
 qqline(data_col$UP11)
 
 shapiro.test(data_uclm$UP11)
-# W = 0.88669, p-value = 1.127e-09
 ks.test(scale(data_uclm$UP11), "pnorm")
-# D = 0.2004, p-value = 5.683e-06
 lillie.test(data_uclm$UP11)
-# D = 0.2004, p-value < 2.2e-16
 
 qqnorm(data_uclm$UP11, las=1, pch=18, 
        main="age uclm of the teachers", font.main=1,
@@ -3545,7 +3393,7 @@ wilcox.test(data_col$UP11,
             data_uclm$UP11,paired = F,
             exact = F,correct = T,conf.int = 0.95)
 
-# W = 13956, p-value = 0.47
+# W = 8493.5, p-value = 8.505e-10
 # result of the non-parametric test
 # there are statistically significant differences
 
@@ -3561,9 +3409,6 @@ data %>%
             min = min(UP12),
             max = max(UP12))
 
-# n media    sd mediana   min   max
-# 327  2.60  1.23       3     1     5
-
 data %>%
   select(Paises,UP12)%>%
   na.omit()%>%
@@ -3575,18 +3420,11 @@ data %>%
             min = min(UP12),
             max = max(UP12))
 
-# Paises       n media    sd mediana   min   max
-# Colombia   168  2.63  1.22       3     1     5
-# España     159  2.56  1.26       2     1     5
-
 # statistical inference
 
 shapiro.test(data$UP12)
-# W = 0.8962, p-value = 3.765e-14
 ks.test(scale(data$UP12), "pnorm")
-# D = 0.17479, p-value = 4.206e-09
 lillie.test(data$UP12)
-# D = 0.17479, p-value < 2.2e-16
 
 qqnorm(data$UP12, las=1, pch=18, 
        main="UP12 of the teachers", font.main=1,
@@ -3594,11 +3432,8 @@ qqnorm(data$UP12, las=1, pch=18,
 qqline(data$UP12)
 
 shapiro.test(data_col$UP12)
-# W = 0.90033, p-value = 3.105e-09
 ks.test(scale(data_col$UP12), "pnorm")
-# D = 0.16682, p-value = 0.0001739
 lillie.test(data_col$UP12)
-# D = 0.16682, p-value = 2.242e-12
 
 qqnorm(data_col$UP12, las=1, pch=18, 
        main="UP12 col of the teachers", font.main=1,
@@ -3606,11 +3441,8 @@ qqnorm(data_col$UP12, las=1, pch=18,
 qqline(data_col$UP12)
 
 shapiro.test(data_uclm$UP12)
-# W = 0.88669, p-value = 1.127e-09
 ks.test(scale(data_uclm$UP12), "pnorm")
-# D = 0.2004, p-value = 5.683e-06
 lillie.test(data_uclm$UP12)
-# D = 0.2004, p-value < 2.2e-16
 
 qqnorm(data_uclm$UP12, las=1, pch=18, 
        main="age uclm of the teachers", font.main=1,
@@ -3622,7 +3454,7 @@ wilcox.test(data_col$UP12,
             data_uclm$UP12,paired = F,
             exact = F,correct = T,conf.int = 0.95)
 
-# W = 13956, p-value = 0.47
+# W = 8944, p-value = 4.848e-09
 # result of the non-parametric test
 # there are statistically significant differences
 
@@ -3638,9 +3470,6 @@ data %>%
             min = min(UP13),
             max = max(UP13))
 
-# n media    sd mediana   min   max
-# 327  2.60  1.23       3     1     5
-
 data %>%
   select(Paises,UP13)%>%
   na.omit()%>%
@@ -3652,18 +3481,11 @@ data %>%
             min = min(UP13),
             max = max(UP13))
 
-# Paises       n media    sd mediana   min   max
-# Colombia   168  2.63  1.22       3     1     5
-# España     159  2.56  1.26       2     1     5
-
 # statistical inference
 
 shapiro.test(data$UP13)
-# W = 0.8962, p-value = 3.765e-14
 ks.test(scale(data$UP13), "pnorm")
-# D = 0.17479, p-value = 4.206e-09
 lillie.test(data$UP13)
-# D = 0.17479, p-value < 2.2e-16
 
 qqnorm(data$UP13, las=1, pch=18, 
        main="UP13 of the teachers", font.main=1,
@@ -3671,11 +3493,8 @@ qqnorm(data$UP13, las=1, pch=18,
 qqline(data$UP13)
 
 shapiro.test(data_col$UP13)
-# W = 0.90033, p-value = 3.105e-09
 ks.test(scale(data_col$UP13), "pnorm")
-# D = 0.16682, p-value = 0.0001739
 lillie.test(data_col$UP13)
-# D = 0.16682, p-value = 2.242e-12
 
 qqnorm(data_col$UP13, las=1, pch=18, 
        main="UP13 col of the teachers", font.main=1,
@@ -3683,11 +3502,8 @@ qqnorm(data_col$UP13, las=1, pch=18,
 qqline(data_col$UP13)
 
 shapiro.test(data_uclm$UP13)
-# W = 0.88669, p-value = 1.127e-09
 ks.test(scale(data_uclm$UP13), "pnorm")
-# D = 0.2004, p-value = 5.683e-06
 lillie.test(data_uclm$UP13)
-# D = 0.2004, p-value < 2.2e-16
 
 qqnorm(data_uclm$UP13, las=1, pch=18, 
        main="age uclm of the teachers", font.main=1,
@@ -3699,7 +3515,7 @@ wilcox.test(data_col$UP13,
             data_uclm$UP13,paired = F,
             exact = F,correct = T,conf.int = 0.95)
 
-# W = 13956, p-value = 0.47
+# W = 12756, p-value = 0.5334
 # result of the non-parametric test
 # there are statistically significant differences
 
@@ -3715,9 +3531,6 @@ data %>%
             min = min(UP14),
             max = max(UP14))
 
-# n media    sd mediana   min   max
-# 327  2.60  1.23       3     1     5
-
 data %>%
   select(Paises,UP14)%>%
   na.omit()%>%
@@ -3729,18 +3542,11 @@ data %>%
             min = min(UP14),
             max = max(UP14))
 
-# Paises       n media    sd mediana   min   max
-# Colombia   168  2.63  1.22       3     1     5
-# España     159  2.56  1.26       2     1     5
-
 # statistical inference
 
 shapiro.test(data$UP14)
-# W = 0.8962, p-value = 3.765e-14
 ks.test(scale(data$UP14), "pnorm")
-# D = 0.17479, p-value = 4.206e-09
 lillie.test(data$UP14)
-# D = 0.17479, p-value < 2.2e-16
 
 qqnorm(data$UP14, las=1, pch=18, 
        main="UP14 of the teachers", font.main=1,
@@ -3748,11 +3554,8 @@ qqnorm(data$UP14, las=1, pch=18,
 qqline(data$UP14)
 
 shapiro.test(data_col$UP14)
-# W = 0.90033, p-value = 3.105e-09
 ks.test(scale(data_col$UP14), "pnorm")
-# D = 0.16682, p-value = 0.0001739
 lillie.test(data_col$UP14)
-# D = 0.16682, p-value = 2.242e-12
 
 qqnorm(data_col$UP14, las=1, pch=18, 
        main="UP14 col of the teachers", font.main=1,
@@ -3760,11 +3563,8 @@ qqnorm(data_col$UP14, las=1, pch=18,
 qqline(data_col$UP14)
 
 shapiro.test(data_uclm$UP14)
-# W = 0.88669, p-value = 1.127e-09
 ks.test(scale(data_uclm$UP14), "pnorm")
-# D = 0.2004, p-value = 5.683e-06
 lillie.test(data_uclm$UP14)
-# D = 0.2004, p-value < 2.2e-16
 
 qqnorm(data_uclm$UP14, las=1, pch=18, 
        main="age uclm of the teachers", font.main=1,
@@ -3776,7 +3576,7 @@ wilcox.test(data_col$UP14,
             data_uclm$UP14,paired = F,
             exact = F,correct = T,conf.int = 0.95)
 
-# W = 13956, p-value = 0.47
+# W = 14380, p-value = 0.1799
 # result of the non-parametric test
 # there are statistically significant differences
 
@@ -3792,9 +3592,6 @@ data %>%
             min = min(UP15),
             max = max(UP15))
 
-# n media    sd mediana   min   max
-# 327  2.60  1.23       3     1     5
-
 data %>%
   select(Paises,UP15)%>%
   na.omit()%>%
@@ -3806,18 +3603,11 @@ data %>%
             min = min(UP15),
             max = max(UP15))
 
-# Paises       n media    sd mediana   min   max
-# Colombia   168  2.63  1.22       3     1     5
-# España     159  2.56  1.26       2     1     5
-
 # statistical inference
 
 shapiro.test(data$UP15)
-# W = 0.8962, p-value = 3.765e-14
 ks.test(scale(data$UP15), "pnorm")
-# D = 0.17479, p-value = 4.206e-09
 lillie.test(data$UP15)
-# D = 0.17479, p-value < 2.2e-16
 
 qqnorm(data$UP15, las=1, pch=18, 
        main="UP15 of the teachers", font.main=1,
@@ -3825,11 +3615,8 @@ qqnorm(data$UP15, las=1, pch=18,
 qqline(data$UP15)
 
 shapiro.test(data_col$UP15)
-# W = 0.90033, p-value = 3.105e-09
 ks.test(scale(data_col$UP15), "pnorm")
-# D = 0.16682, p-value = 0.0001739
 lillie.test(data_col$UP15)
-# D = 0.16682, p-value = 2.242e-12
 
 qqnorm(data_col$UP15, las=1, pch=18, 
        main="UP15 col of the teachers", font.main=1,
@@ -3837,11 +3624,8 @@ qqnorm(data_col$UP15, las=1, pch=18,
 qqline(data_col$UP15)
 
 shapiro.test(data_uclm$UP15)
-# W = 0.88669, p-value = 1.127e-09
 ks.test(scale(data_uclm$UP15), "pnorm")
-# D = 0.2004, p-value = 5.683e-06
 lillie.test(data_uclm$UP15)
-# D = 0.2004, p-value < 2.2e-16
 
 qqnorm(data_uclm$UP15, las=1, pch=18, 
        main="age uclm of the teachers", font.main=1,
@@ -3853,11 +3637,11 @@ wilcox.test(data_col$UP15,
             data_uclm$UP15,paired = F,
             exact = F,correct = T,conf.int = 0.95)
 
-# W = 13956, p-value = 0.47
+# W = 7003, p-value = 5.949e-16
 # result of the non-parametric test
 # there are statistically significant differences
 
-# UP16 usas: Herramientas de búsqueda de información en la red (Google,…) ----
+# UP16 usas: Traductores on-line  ----
 
 data %>%
   select(Paises,UP16)%>%
@@ -3868,9 +3652,6 @@ data %>%
             mediana = median(UP16),
             min = min(UP16),
             max = max(UP16))
-
-# n media    sd mediana   min   max
-# 327  2.60  1.23       3     1     5
 
 data %>%
   select(Paises,UP16)%>%
@@ -3883,18 +3664,11 @@ data %>%
             min = min(UP16),
             max = max(UP16))
 
-# Paises       n media    sd mediana   min   max
-# Colombia   168  2.63  1.22       3     1     5
-# España     159  2.56  1.26       2     1     5
-
 # statistical inference
 
 shapiro.test(data$UP16)
-# W = 0.8962, p-value = 3.765e-14
 ks.test(scale(data$UP16), "pnorm")
-# D = 0.17479, p-value = 4.206e-09
 lillie.test(data$UP16)
-# D = 0.17479, p-value < 2.2e-16
 
 qqnorm(data$UP16, las=1, pch=18, 
        main="UP16 of the teachers", font.main=1,
@@ -3902,11 +3676,8 @@ qqnorm(data$UP16, las=1, pch=18,
 qqline(data$UP16)
 
 shapiro.test(data_col$UP16)
-# W = 0.90033, p-value = 3.105e-09
 ks.test(scale(data_col$UP16), "pnorm")
-# D = 0.16682, p-value = 0.0001739
 lillie.test(data_col$UP16)
-# D = 0.16682, p-value = 2.242e-12
 
 qqnorm(data_col$UP16, las=1, pch=18, 
        main="UP16 col of the teachers", font.main=1,
@@ -3914,11 +3685,8 @@ qqnorm(data_col$UP16, las=1, pch=18,
 qqline(data_col$UP16)
 
 shapiro.test(data_uclm$UP16)
-# W = 0.88669, p-value = 1.127e-09
 ks.test(scale(data_uclm$UP16), "pnorm")
-# D = 0.2004, p-value = 5.683e-06
 lillie.test(data_uclm$UP16)
-# D = 0.2004, p-value < 2.2e-16
 
 qqnorm(data_uclm$UP16, las=1, pch=18, 
        main="age uclm of the teachers", font.main=1,
@@ -3930,7 +3698,7 @@ wilcox.test(data_col$UP16,
             data_uclm$UP16,paired = F,
             exact = F,correct = T,conf.int = 0.95)
 
-# W = 13956, p-value = 0.47
+# W = 10941, p-value = 0.005699
 # result of the non-parametric test
 # there are statistically significant differences
 
@@ -3946,9 +3714,6 @@ data %>%
             min = min(UP17),
             max = max(UP17))
 
-# n media    sd mediana   min   max
-# 327  2.60  1.23       3     1     5
-
 data %>%
   select(Paises,UP17)%>%
   na.omit()%>%
@@ -3960,18 +3725,11 @@ data %>%
             min = min(UP17),
             max = max(UP17))
 
-# Paises       n media    sd mediana   min   max
-# Colombia   168  2.63  1.22       3     1     5
-# España     159  2.56  1.26       2     1     5
-
 # statistical inference
 
 shapiro.test(data$UP17)
-# W = 0.8962, p-value = 3.765e-14
 ks.test(scale(data$UP17), "pnorm")
-# D = 0.17479, p-value = 4.206e-09
 lillie.test(data$UP17)
-# D = 0.17479, p-value < 2.2e-16
 
 qqnorm(data$UP17, las=1, pch=18, 
        main="UP17 of the teachers", font.main=1,
@@ -3979,11 +3737,8 @@ qqnorm(data$UP17, las=1, pch=18,
 qqline(data$UP17)
 
 shapiro.test(data_col$UP17)
-# W = 0.90033, p-value = 3.105e-09
 ks.test(scale(data_col$UP17), "pnorm")
-# D = 0.16682, p-value = 0.0001739
 lillie.test(data_col$UP17)
-# D = 0.16682, p-value = 2.242e-12
 
 qqnorm(data_col$UP17, las=1, pch=18, 
        main="UP17 col of the teachers", font.main=1,
@@ -3991,11 +3746,8 @@ qqnorm(data_col$UP17, las=1, pch=18,
 qqline(data_col$UP17)
 
 shapiro.test(data_uclm$UP17)
-# W = 0.88669, p-value = 1.127e-09
 ks.test(scale(data_uclm$UP17), "pnorm")
-# D = 0.2004, p-value = 5.683e-06
 lillie.test(data_uclm$UP17)
-# D = 0.2004, p-value < 2.2e-16
 
 qqnorm(data_uclm$UP17, las=1, pch=18, 
        main="age uclm of the teachers", font.main=1,
@@ -4007,7 +3759,7 @@ wilcox.test(data_col$UP17,
             data_uclm$UP17,paired = F,
             exact = F,correct = T,conf.int = 0.95)
 
-# W = 13956, p-value = 0.47
+# W = 12982, p-value = 0.7285
 # result of the non-parametric test
 # there are statistically significant differences
 
@@ -4023,9 +3775,6 @@ data %>%
             min = min(UP18),
             max = max(UP18))
 
-# n media    sd mediana   min   max
-# 327  2.60  1.23       3     1     5
-
 data %>%
   select(Paises,UP18)%>%
   na.omit()%>%
@@ -4037,18 +3786,11 @@ data %>%
             min = min(UP18),
             max = max(UP18))
 
-# Paises       n media    sd mediana   min   max
-# Colombia   168  2.63  1.22       3     1     5
-# España     159  2.56  1.26       2     1     5
-
 # statistical inference
 
 shapiro.test(data$UP18)
-# W = 0.8962, p-value = 3.765e-14
 ks.test(scale(data$UP18), "pnorm")
-# D = 0.17479, p-value = 4.206e-09
 lillie.test(data$UP18)
-# D = 0.17479, p-value < 2.2e-16
 
 qqnorm(data$UP18, las=1, pch=18, 
        main="UP18 of the teachers", font.main=1,
@@ -4056,11 +3798,8 @@ qqnorm(data$UP18, las=1, pch=18,
 qqline(data$UP18)
 
 shapiro.test(data_col$UP18)
-# W = 0.90033, p-value = 3.105e-09
 ks.test(scale(data_col$UP18), "pnorm")
-# D = 0.16682, p-value = 0.0001739
 lillie.test(data_col$UP18)
-# D = 0.16682, p-value = 2.242e-12
 
 qqnorm(data_col$UP18, las=1, pch=18, 
        main="UP18 col of the teachers", font.main=1,
@@ -4068,11 +3807,8 @@ qqnorm(data_col$UP18, las=1, pch=18,
 qqline(data_col$UP18)
 
 shapiro.test(data_uclm$UP18)
-# W = 0.88669, p-value = 1.127e-09
 ks.test(scale(data_uclm$UP18), "pnorm")
-# D = 0.2004, p-value = 5.683e-06
 lillie.test(data_uclm$UP18)
-# D = 0.2004, p-value < 2.2e-16
 
 qqnorm(data_uclm$UP18, las=1, pch=18, 
        main="age uclm of the teachers", font.main=1,
@@ -4084,7 +3820,7 @@ wilcox.test(data_col$UP18,
             data_uclm$UP18,paired = F,
             exact = F,correct = T,conf.int = 0.95)
 
-# W = 13956, p-value = 0.47
+# W = 11670, p-value = 0.04287
 # result of the non-parametric test
 # there are statistically significant differences
 
@@ -4100,9 +3836,6 @@ data %>%
             min = min(UP19),
             max = max(UP19))
 
-# n media    sd mediana   min   max
-# 327  2.60  1.23       3     1     5
-
 data %>%
   select(Paises,UP19)%>%
   na.omit()%>%
@@ -4114,18 +3847,11 @@ data %>%
             min = min(UP19),
             max = max(UP19))
 
-# Paises       n media    sd mediana   min   max
-# Colombia   168  2.63  1.22       3     1     5
-# España     159  2.56  1.26       2     1     5
-
 # statistical inference
 
 shapiro.test(data$UP19)
-# W = 0.8962, p-value = 3.765e-14
 ks.test(scale(data$UP19), "pnorm")
-# D = 0.17479, p-value = 4.206e-09
 lillie.test(data$UP19)
-# D = 0.17479, p-value < 2.2e-16
 
 qqnorm(data$UP19, las=1, pch=18, 
        main="UP19 of the teachers", font.main=1,
@@ -4133,11 +3859,8 @@ qqnorm(data$UP19, las=1, pch=18,
 qqline(data$UP19)
 
 shapiro.test(data_col$UP19)
-# W = 0.90033, p-value = 3.105e-09
 ks.test(scale(data_col$UP19), "pnorm")
-# D = 0.16682, p-value = 0.0001739
 lillie.test(data_col$UP19)
-# D = 0.16682, p-value = 2.242e-12
 
 qqnorm(data_col$UP19, las=1, pch=18, 
        main="UP19 col of the teachers", font.main=1,
@@ -4145,11 +3868,8 @@ qqnorm(data_col$UP19, las=1, pch=18,
 qqline(data_col$UP19)
 
 shapiro.test(data_uclm$UP19)
-# W = 0.88669, p-value = 1.127e-09
 ks.test(scale(data_uclm$UP19), "pnorm")
-# D = 0.2004, p-value = 5.683e-06
 lillie.test(data_uclm$UP19)
-# D = 0.2004, p-value < 2.2e-16
 
 qqnorm(data_uclm$UP19, las=1, pch=18, 
        main="age uclm of the teachers", font.main=1,
@@ -4161,7 +3881,7 @@ wilcox.test(data_col$UP19,
             data_uclm$UP19,paired = F,
             exact = F,correct = T,conf.int = 0.95)
 
-# W = 13956, p-value = 0.47
+# W = 18697, p-value = 1.649e-12
 # result of the non-parametric test
 # there are statistically significant differences
 
@@ -4177,9 +3897,6 @@ data %>%
             min = min(UP20),
             max = max(UP20))
 
-# n media    sd mediana   min   max
-# 327  2.60  1.23       3     1     5
-
 data %>%
   select(Paises,UP20)%>%
   na.omit()%>%
@@ -4191,18 +3908,11 @@ data %>%
             min = min(UP20),
             max = max(UP20))
 
-# Paises       n media    sd mediana   min   max
-# Colombia   168  2.63  1.22       3     1     5
-# España     159  2.56  1.26       2     1     5
-
 # statistical inference
 
 shapiro.test(data$UP20)
-# W = 0.8962, p-value = 3.765e-14
 ks.test(scale(data$UP20), "pnorm")
-# D = 0.17479, p-value = 4.206e-09
 lillie.test(data$UP20)
-# D = 0.17479, p-value < 2.2e-16
 
 qqnorm(data$UP20, las=1, pch=18, 
        main="UP20 of the teachers", font.main=1,
@@ -4210,11 +3920,8 @@ qqnorm(data$UP20, las=1, pch=18,
 qqline(data$UP20)
 
 shapiro.test(data_col$UP20)
-# W = 0.90033, p-value = 3.105e-09
 ks.test(scale(data_col$UP20), "pnorm")
-# D = 0.16682, p-value = 0.0001739
 lillie.test(data_col$UP20)
-# D = 0.16682, p-value = 2.242e-12
 
 qqnorm(data_col$UP20, las=1, pch=18, 
        main="UP20 col of the teachers", font.main=1,
@@ -4222,11 +3929,8 @@ qqnorm(data_col$UP20, las=1, pch=18,
 qqline(data_col$UP20)
 
 shapiro.test(data_uclm$UP20)
-# W = 0.88669, p-value = 1.127e-09
 ks.test(scale(data_uclm$UP20), "pnorm")
-# D = 0.2004, p-value = 5.683e-06
 lillie.test(data_uclm$UP20)
-# D = 0.2004, p-value < 2.2e-16
 
 qqnorm(data_uclm$UP20, las=1, pch=18, 
        main="age uclm of the teachers", font.main=1,
@@ -4238,7 +3942,7 @@ wilcox.test(data_col$UP20,
             data_uclm$UP20,paired = F,
             exact = F,correct = T,conf.int = 0.95)
 
-# W = 13956, p-value = 0.47
+# W = 18358, p-value = 7.204e-12
 # result of the non-parametric test
 # there are statistically significant differences
 
@@ -4254,9 +3958,6 @@ data %>%
             min = min(UP21),
             max = max(UP21))
 
-# n media    sd mediana   min   max
-# 327  2.60  1.23       3     1     5
-
 data %>%
   select(Paises,UP21)%>%
   na.omit()%>%
@@ -4268,18 +3969,11 @@ data %>%
             min = min(UP21),
             max = max(UP21))
 
-# Paises       n media    sd mediana   min   max
-# Colombia   168  2.63  1.22       3     1     5
-# España     159  2.56  1.26       2     1     5
-
 # statistical inference
 
 shapiro.test(data$UP21)
-# W = 0.8962, p-value = 3.765e-14
 ks.test(scale(data$UP21), "pnorm")
-# D = 0.17479, p-value = 4.206e-09
 lillie.test(data$UP21)
-# D = 0.17479, p-value < 2.2e-16
 
 qqnorm(data$UP21, las=1, pch=18, 
        main="UP21 of the teachers", font.main=1,
@@ -4287,11 +3981,8 @@ qqnorm(data$UP21, las=1, pch=18,
 qqline(data$UP21)
 
 shapiro.test(data_col$UP21)
-# W = 0.90033, p-value = 3.105e-09
 ks.test(scale(data_col$UP21), "pnorm")
-# D = 0.16682, p-value = 0.0001739
 lillie.test(data_col$UP21)
-# D = 0.16682, p-value = 2.242e-12
 
 qqnorm(data_col$UP21, las=1, pch=18, 
        main="UP21 col of the teachers", font.main=1,
@@ -4299,11 +3990,8 @@ qqnorm(data_col$UP21, las=1, pch=18,
 qqline(data_col$UP21)
 
 shapiro.test(data_uclm$UP21)
-# W = 0.88669, p-value = 1.127e-09
 ks.test(scale(data_uclm$UP21), "pnorm")
-# D = 0.2004, p-value = 5.683e-06
 lillie.test(data_uclm$UP21)
-# D = 0.2004, p-value < 2.2e-16
 
 qqnorm(data_uclm$UP21, las=1, pch=18, 
        main="age uclm of the teachers", font.main=1,
@@ -4315,7 +4003,7 @@ wilcox.test(data_col$UP21,
             data_uclm$UP21,paired = F,
             exact = F,correct = T,conf.int = 0.95)
 
-# W = 13956, p-value = 0.47
+# W = 17814, p-value = 2.533e-10
 # result of the non-parametric test
 # there are statistically significant differences
 
@@ -4331,9 +4019,6 @@ data %>%
             min = min(UP22),
             max = max(UP22))
 
-# n media    sd mediana   min   max
-# 327  2.60  1.23       3     1     5
-
 data %>%
   select(Paises,UP22)%>%
   na.omit()%>%
@@ -4345,18 +4030,11 @@ data %>%
             min = min(UP22),
             max = max(UP22))
 
-# Paises       n media    sd mediana   min   max
-# Colombia   168  2.63  1.22       3     1     5
-# España     159  2.56  1.26       2     1     5
-
 # statistical inference
 
 shapiro.test(data$UP22)
-# W = 0.8962, p-value = 3.765e-14
 ks.test(scale(data$UP22), "pnorm")
-# D = 0.17479, p-value = 4.206e-09
 lillie.test(data$UP22)
-# D = 0.17479, p-value < 2.2e-16
 
 qqnorm(data$UP22, las=1, pch=18, 
        main="UP22 of the teachers", font.main=1,
@@ -4364,11 +4042,8 @@ qqnorm(data$UP22, las=1, pch=18,
 qqline(data$UP22)
 
 shapiro.test(data_col$UP22)
-# W = 0.90033, p-value = 3.105e-09
 ks.test(scale(data_col$UP22), "pnorm")
-# D = 0.16682, p-value = 0.0001739
 lillie.test(data_col$UP22)
-# D = 0.16682, p-value = 2.242e-12
 
 qqnorm(data_col$UP22, las=1, pch=18, 
        main="UP22 col of the teachers", font.main=1,
@@ -4376,11 +4051,8 @@ qqnorm(data_col$UP22, las=1, pch=18,
 qqline(data_col$UP22)
 
 shapiro.test(data_uclm$UP22)
-# W = 0.88669, p-value = 1.127e-09
 ks.test(scale(data_uclm$UP22), "pnorm")
-# D = 0.2004, p-value = 5.683e-06
 lillie.test(data_uclm$UP22)
-# D = 0.2004, p-value < 2.2e-16
 
 qqnorm(data_uclm$UP22, las=1, pch=18, 
        main="age uclm of the teachers", font.main=1,
@@ -4392,7 +4064,7 @@ wilcox.test(data_col$UP22,
             data_uclm$UP22,paired = F,
             exact = F,correct = T,conf.int = 0.95)
 
-# W = 13956, p-value = 0.47
+# W = 14150, p-value = 0.2857
 # result of the non-parametric test
 # there are statistically significant differences
 
@@ -4408,9 +4080,6 @@ data %>%
             min = min(UP23),
             max = max(UP23))
 
-# n media    sd mediana   min   max
-# 327  2.60  1.23       3     1     5
-
 data %>%
   select(Paises,UP23)%>%
   na.omit()%>%
@@ -4422,18 +4091,11 @@ data %>%
             min = min(UP23),
             max = max(UP23))
 
-# Paises       n media    sd mediana   min   max
-# Colombia   168  2.63  1.22       3     1     5
-# España     159  2.56  1.26       2     1     5
-
 # statistical inference
 
 shapiro.test(data$UP23)
-# W = 0.8962, p-value = 3.765e-14
 ks.test(scale(data$UP23), "pnorm")
-# D = 0.17479, p-value = 4.206e-09
 lillie.test(data$UP23)
-# D = 0.17479, p-value < 2.2e-16
 
 qqnorm(data$UP23, las=1, pch=18, 
        main="UP23 of the teachers", font.main=1,
@@ -4441,11 +4103,8 @@ qqnorm(data$UP23, las=1, pch=18,
 qqline(data$UP23)
 
 shapiro.test(data_col$UP23)
-# W = 0.90033, p-value = 3.105e-09
 ks.test(scale(data_col$UP23), "pnorm")
-# D = 0.16682, p-value = 0.0001739
 lillie.test(data_col$UP23)
-# D = 0.16682, p-value = 2.242e-12
 
 qqnorm(data_col$UP23, las=1, pch=18, 
        main="UP23 col of the teachers", font.main=1,
@@ -4453,11 +4112,8 @@ qqnorm(data_col$UP23, las=1, pch=18,
 qqline(data_col$UP23)
 
 shapiro.test(data_uclm$UP23)
-# W = 0.88669, p-value = 1.127e-09
 ks.test(scale(data_uclm$UP23), "pnorm")
-# D = 0.2004, p-value = 5.683e-06
 lillie.test(data_uclm$UP23)
-# D = 0.2004, p-value < 2.2e-16
 
 qqnorm(data_uclm$UP23, las=1, pch=18, 
        main="age uclm of the teachers", font.main=1,
@@ -4469,7 +4125,7 @@ wilcox.test(data_col$UP23,
             data_uclm$UP23,paired = F,
             exact = F,correct = T,conf.int = 0.95)
 
-# W = 13956, p-value = 0.47
+# W = 15645, p-value = 0.005489
 # result of the non-parametric test
 # there are statistically significant differences
 
@@ -4485,9 +4141,6 @@ data %>%
             min = min(UP24),
             max = max(UP24))
 
-# n media    sd mediana   min   max
-# 327  2.60  1.23       3     1     5
-
 data %>%
   select(Paises,UP24)%>%
   na.omit()%>%
@@ -4499,18 +4152,11 @@ data %>%
             min = min(UP24),
             max = max(UP24))
 
-# Paises       n media    sd mediana   min   max
-# Colombia   168  2.63  1.22       3     1     5
-# España     159  2.56  1.26       2     1     5
-
 # statistical inference
 
 shapiro.test(data$UP24)
-# W = 0.8962, p-value = 3.765e-14
 ks.test(scale(data$UP24), "pnorm")
-# D = 0.17479, p-value = 4.206e-09
 lillie.test(data$UP24)
-# D = 0.17479, p-value < 2.2e-16
 
 qqnorm(data$UP24, las=1, pch=18, 
        main="UP24 of the teachers", font.main=1,
@@ -4518,11 +4164,8 @@ qqnorm(data$UP24, las=1, pch=18,
 qqline(data$UP24)
 
 shapiro.test(data_col$UP24)
-# W = 0.90033, p-value = 3.105e-09
 ks.test(scale(data_col$UP24), "pnorm")
-# D = 0.16682, p-value = 0.0001739
 lillie.test(data_col$UP24)
-# D = 0.16682, p-value = 2.242e-12
 
 qqnorm(data_col$UP24, las=1, pch=18, 
        main="UP24 col of the teachers", font.main=1,
@@ -4530,11 +4173,8 @@ qqnorm(data_col$UP24, las=1, pch=18,
 qqline(data_col$UP24)
 
 shapiro.test(data_uclm$UP24)
-# W = 0.88669, p-value = 1.127e-09
 ks.test(scale(data_uclm$UP24), "pnorm")
-# D = 0.2004, p-value = 5.683e-06
 lillie.test(data_uclm$UP24)
-# D = 0.2004, p-value < 2.2e-16
 
 qqnorm(data_uclm$UP24, las=1, pch=18, 
        main="age uclm of the teachers", font.main=1,
@@ -4546,7 +4186,7 @@ wilcox.test(data_col$UP24,
             data_uclm$UP24,paired = F,
             exact = F,correct = T,conf.int = 0.95)
 
-# W = 13956, p-value = 0.47
+# W = 12834, p-value = 0.5311
 # result of the non-parametric test
 # there are statistically significant differences
 
@@ -4562,9 +4202,6 @@ data %>%
             min = min(UP25),
             max = max(UP25))
 
-# n media    sd mediana   min   max
-# 327  2.60  1.23       3     1     5
-
 data %>%
   select(Paises,UP25)%>%
   na.omit()%>%
@@ -4576,18 +4213,11 @@ data %>%
             min = min(UP25),
             max = max(UP25))
 
-# Paises       n media    sd mediana   min   max
-# Colombia   168  2.63  1.22       3     1     5
-# España     159  2.56  1.26       2     1     5
-
 # statistical inference
 
 shapiro.test(data$UP25)
-# W = 0.8962, p-value = 3.765e-14
 ks.test(scale(data$UP25), "pnorm")
-# D = 0.17479, p-value = 4.206e-09
 lillie.test(data$UP25)
-# D = 0.17479, p-value < 2.2e-16
 
 qqnorm(data$UP25, las=1, pch=18, 
        main="UP25 of the teachers", font.main=1,
@@ -4595,11 +4225,8 @@ qqnorm(data$UP25, las=1, pch=18,
 qqline(data$UP25)
 
 shapiro.test(data_col$UP25)
-# W = 0.90033, p-value = 3.105e-09
 ks.test(scale(data_col$UP25), "pnorm")
-# D = 0.16682, p-value = 0.0001739
 lillie.test(data_col$UP25)
-# D = 0.16682, p-value = 2.242e-12
 
 qqnorm(data_col$UP25, las=1, pch=18, 
        main="UP25 col of the teachers", font.main=1,
@@ -4607,11 +4234,8 @@ qqnorm(data_col$UP25, las=1, pch=18,
 qqline(data_col$UP25)
 
 shapiro.test(data_uclm$UP25)
-# W = 0.88669, p-value = 1.127e-09
 ks.test(scale(data_uclm$UP25), "pnorm")
-# D = 0.2004, p-value = 5.683e-06
 lillie.test(data_uclm$UP25)
-# D = 0.2004, p-value < 2.2e-16
 
 qqnorm(data_uclm$UP25, las=1, pch=18, 
        main="age uclm of the teachers", font.main=1,
@@ -4623,7 +4247,7 @@ wilcox.test(data_col$UP25,
             data_uclm$UP25,paired = F,
             exact = F,correct = T,conf.int = 0.95)
 
-# W = 13956, p-value = 0.47
+# W = 9785.5, p-value = 2.452e-05
 # result of the non-parametric test
 # there are statistically significant differences
 
@@ -4639,9 +4263,6 @@ data %>%
             min = min(UP26),
             max = max(UP26))
 
-# n media    sd mediana   min   max
-# 327  2.60  1.23       3     1     5
-
 data %>%
   select(Paises,UP26)%>%
   na.omit()%>%
@@ -4653,18 +4274,11 @@ data %>%
             min = min(UP26),
             max = max(UP26))
 
-# Paises       n media    sd mediana   min   max
-# Colombia   168  2.63  1.22       3     1     5
-# España     159  2.56  1.26       2     1     5
-
 # statistical inference
 
 shapiro.test(data$UP26)
-# W = 0.8962, p-value = 3.765e-14
 ks.test(scale(data$UP26), "pnorm")
-# D = 0.17479, p-value = 4.206e-09
 lillie.test(data$UP26)
-# D = 0.17479, p-value < 2.2e-16
 
 qqnorm(data$UP26, las=1, pch=18, 
        main="UP26 of the teachers", font.main=1,
@@ -4672,11 +4286,8 @@ qqnorm(data$UP26, las=1, pch=18,
 qqline(data$UP26)
 
 shapiro.test(data_col$UP26)
-# W = 0.90033, p-value = 3.105e-09
 ks.test(scale(data_col$UP26), "pnorm")
-# D = 0.16682, p-value = 0.0001739
 lillie.test(data_col$UP26)
-# D = 0.16682, p-value = 2.242e-12
 
 qqnorm(data_col$UP26, las=1, pch=18, 
        main="UP26 col of the teachers", font.main=1,
@@ -4684,11 +4295,8 @@ qqnorm(data_col$UP26, las=1, pch=18,
 qqline(data_col$UP26)
 
 shapiro.test(data_uclm$UP26)
-# W = 0.88669, p-value = 1.127e-09
 ks.test(scale(data_uclm$UP26), "pnorm")
-# D = 0.2004, p-value = 5.683e-06
 lillie.test(data_uclm$UP26)
-# D = 0.2004, p-value < 2.2e-16
 
 qqnorm(data_uclm$UP26, las=1, pch=18, 
        main="age uclm of the teachers", font.main=1,
@@ -4700,7 +4308,7 @@ wilcox.test(data_col$UP26,
             data_uclm$UP26,paired = F,
             exact = F,correct = T,conf.int = 0.95)
 
-# W = 13956, p-value = 0.47
+# W = 4712, p-value < 2.2e-16
 # result of the non-parametric test
 # there are statistically significant differences
 
@@ -4716,9 +4324,6 @@ data %>%
             min = min(UP27),
             max = max(UP27))
 
-# n media    sd mediana   min   max
-# 327  2.60  1.23       3     1     5
-
 data %>%
   select(Paises,UP27)%>%
   na.omit()%>%
@@ -4730,18 +4335,11 @@ data %>%
             min = min(UP27),
             max = max(UP27))
 
-# Paises       n media    sd mediana   min   max
-# Colombia   168  2.63  1.22       3     1     5
-# España     159  2.56  1.26       2     1     5
-
 # statistical inference
 
 shapiro.test(data$UP27)
-# W = 0.8962, p-value = 3.765e-14
 ks.test(scale(data$UP27), "pnorm")
-# D = 0.17479, p-value = 4.206e-09
 lillie.test(data$UP27)
-# D = 0.17479, p-value < 2.2e-16
 
 qqnorm(data$UP27, las=1, pch=18, 
        main="UP27 of the teachers", font.main=1,
@@ -4749,11 +4347,8 @@ qqnorm(data$UP27, las=1, pch=18,
 qqline(data$UP27)
 
 shapiro.test(data_col$UP27)
-# W = 0.90033, p-value = 3.105e-09
 ks.test(scale(data_col$UP27), "pnorm")
-# D = 0.16682, p-value = 0.0001739
 lillie.test(data_col$UP27)
-# D = 0.16682, p-value = 2.242e-12
 
 qqnorm(data_col$UP27, las=1, pch=18, 
        main="UP27 col of the teachers", font.main=1,
@@ -4761,11 +4356,8 @@ qqnorm(data_col$UP27, las=1, pch=18,
 qqline(data_col$UP27)
 
 shapiro.test(data_uclm$UP27)
-# W = 0.88669, p-value = 1.127e-09
 ks.test(scale(data_uclm$UP27), "pnorm")
-# D = 0.2004, p-value = 5.683e-06
 lillie.test(data_uclm$UP27)
-# D = 0.2004, p-value < 2.2e-16
 
 qqnorm(data_uclm$UP27, las=1, pch=18, 
        main="age uclm of the teachers", font.main=1,
@@ -4777,7 +4369,7 @@ wilcox.test(data_col$UP27,
             data_uclm$UP27,paired = F,
             exact = F,correct = T,conf.int = 0.95)
 
-# W = 13956, p-value = 0.47
+# W = 18373, p-value = 6.03e-11
 # result of the non-parametric test
 # there are statistically significant differences
 
@@ -4793,9 +4385,6 @@ data %>%
             min = min(UP28),
             max = max(UP28))
 
-# n media    sd mediana   min   max
-# 327  2.60  1.23       3     1     5
-
 data %>%
   select(Paises,UP28)%>%
   na.omit()%>%
@@ -4807,18 +4396,11 @@ data %>%
             min = min(UP28),
             max = max(UP28))
 
-# Paises       n media    sd mediana   min   max
-# Colombia   168  2.63  1.22       3     1     5
-# España     159  2.56  1.26       2     1     5
-
 # statistical inference
 
 shapiro.test(data$UP28)
-# W = 0.8962, p-value = 3.765e-14
 ks.test(scale(data$UP28), "pnorm")
-# D = 0.17479, p-value = 4.206e-09
 lillie.test(data$UP28)
-# D = 0.17479, p-value < 2.2e-16
 
 qqnorm(data$UP28, las=1, pch=18, 
        main="UP28 of the teachers", font.main=1,
@@ -4826,11 +4408,8 @@ qqnorm(data$UP28, las=1, pch=18,
 qqline(data$UP28)
 
 shapiro.test(data_col$UP28)
-# W = 0.90033, p-value = 3.105e-09
 ks.test(scale(data_col$UP28), "pnorm")
-# D = 0.16682, p-value = 0.0001739
 lillie.test(data_col$UP28)
-# D = 0.16682, p-value = 2.242e-12
 
 qqnorm(data_col$UP28, las=1, pch=18, 
        main="UP28 col of the teachers", font.main=1,
@@ -4838,11 +4417,8 @@ qqnorm(data_col$UP28, las=1, pch=18,
 qqline(data_col$UP28)
 
 shapiro.test(data_uclm$UP28)
-# W = 0.88669, p-value = 1.127e-09
 ks.test(scale(data_uclm$UP28), "pnorm")
-# D = 0.2004, p-value = 5.683e-06
 lillie.test(data_uclm$UP28)
-# D = 0.2004, p-value < 2.2e-16
 
 qqnorm(data_uclm$UP28, las=1, pch=18, 
        main="age uclm of the teachers", font.main=1,
@@ -4854,7 +4430,7 @@ wilcox.test(data_col$UP28,
             data_uclm$UP28,paired = F,
             exact = F,correct = T,conf.int = 0.95)
 
-# W = 13956, p-value = 0.47
+# W = 7988, p-value = 8.845e-11
 # result of the non-parametric test
 # there are statistically significant differences
 
@@ -4870,9 +4446,6 @@ data %>%
             min = min(UP29),
             max = max(UP29))
 
-# n media    sd mediana   min   max
-# 327  2.60  1.23       3     1     5
-
 data %>%
   select(Paises,UP29)%>%
   na.omit()%>%
@@ -4884,18 +4457,11 @@ data %>%
             min = min(UP29),
             max = max(UP29))
 
-# Paises       n media    sd mediana   min   max
-# Colombia   168  2.63  1.22       3     1     5
-# España     159  2.56  1.26       2     1     5
-
 # statistical inference
 
 shapiro.test(data$UP29)
-# W = 0.8962, p-value = 3.765e-14
 ks.test(scale(data$UP29), "pnorm")
-# D = 0.17479, p-value = 4.206e-09
 lillie.test(data$UP29)
-# D = 0.17479, p-value < 2.2e-16
 
 qqnorm(data$UP29, las=1, pch=18, 
        main="UP29 of the teachers", font.main=1,
@@ -4903,11 +4469,8 @@ qqnorm(data$UP29, las=1, pch=18,
 qqline(data$UP29)
 
 shapiro.test(data_col$UP29)
-# W = 0.90033, p-value = 3.105e-09
 ks.test(scale(data_col$UP29), "pnorm")
-# D = 0.16682, p-value = 0.0001739
 lillie.test(data_col$UP29)
-# D = 0.16682, p-value = 2.242e-12
 
 qqnorm(data_col$UP29, las=1, pch=18, 
        main="UP29 col of the teachers", font.main=1,
@@ -4915,11 +4478,8 @@ qqnorm(data_col$UP29, las=1, pch=18,
 qqline(data_col$UP29)
 
 shapiro.test(data_uclm$UP29)
-# W = 0.88669, p-value = 1.127e-09
 ks.test(scale(data_uclm$UP29), "pnorm")
-# D = 0.2004, p-value = 5.683e-06
 lillie.test(data_uclm$UP29)
-# D = 0.2004, p-value < 2.2e-16
 
 qqnorm(data_uclm$UP29, las=1, pch=18, 
        main="age uclm of the teachers", font.main=1,
@@ -4931,7 +4491,7 @@ wilcox.test(data_col$UP29,
             data_uclm$UP29,paired = F,
             exact = F,correct = T,conf.int = 0.95)
 
-# W = 13956, p-value = 0.47
+# W = 13807, p-value = 0.5874
 # result of the non-parametric test
 # there are statistically significant differences
 
@@ -4947,9 +4507,6 @@ data %>%
             min = min(UP30),
             max = max(UP30))
 
-# n media    sd mediana   min   max
-# 327  2.60  1.23       3     1     5
-
 data %>%
   select(Paises,UP30)%>%
   na.omit()%>%
@@ -4961,18 +4518,11 @@ data %>%
             min = min(UP30),
             max = max(UP30))
 
-# Paises       n media    sd mediana   min   max
-# Colombia   168  2.63  1.22       3     1     5
-# España     159  2.56  1.26       2     1     5
-
 # statistical inference
 
 shapiro.test(data$UP30)
-# W = 0.8962, p-value = 3.765e-14
 ks.test(scale(data$UP30), "pnorm")
-# D = 0.17479, p-value = 4.206e-09
 lillie.test(data$UP30)
-# D = 0.17479, p-value < 2.2e-16
 
 qqnorm(data$UP30, las=1, pch=18, 
        main="UP30 of the teachers", font.main=1,
@@ -4980,11 +4530,8 @@ qqnorm(data$UP30, las=1, pch=18,
 qqline(data$UP30)
 
 shapiro.test(data_col$UP30)
-# W = 0.90033, p-value = 3.105e-09
 ks.test(scale(data_col$UP30), "pnorm")
-# D = 0.16682, p-value = 0.0001739
 lillie.test(data_col$UP30)
-# D = 0.16682, p-value = 2.242e-12
 
 qqnorm(data_col$UP30, las=1, pch=18, 
        main="UP30 col of the teachers", font.main=1,
@@ -4992,11 +4539,8 @@ qqnorm(data_col$UP30, las=1, pch=18,
 qqline(data_col$UP30)
 
 shapiro.test(data_uclm$UP30)
-# W = 0.88669, p-value = 1.127e-09
 ks.test(scale(data_uclm$UP30), "pnorm")
-# D = 0.2004, p-value = 5.683e-06
 lillie.test(data_uclm$UP30)
-# D = 0.2004, p-value < 2.2e-16
 
 qqnorm(data_uclm$UP30, las=1, pch=18, 
        main="age uclm of the teachers", font.main=1,
@@ -5008,7 +4552,7 @@ wilcox.test(data_col$UP30,
             data_uclm$UP30,paired = F,
             exact = F,correct = T,conf.int = 0.95)
 
-# W = 13956, p-value = 0.47
+# W = 17368, p-value = 1.109e-06
 # result of the non-parametric test
 # there are statistically significant differences
 
@@ -5024,9 +4568,6 @@ data %>%
             min = min(UP31),
             max = max(UP31))
 
-# n media    sd mediana   min   max
-# 327  2.60  1.23       3     1     5
-
 data %>%
   select(Paises,UP31)%>%
   na.omit()%>%
@@ -5038,18 +4579,11 @@ data %>%
             min = min(UP31),
             max = max(UP31))
 
-# Paises       n media    sd mediana   min   max
-# Colombia   168  2.63  1.22       3     1     5
-# España     159  2.56  1.26       2     1     5
-
 # statistical inference
 
 shapiro.test(data$UP31)
-# W = 0.8962, p-value = 3.765e-14
 ks.test(scale(data$UP31), "pnorm")
-# D = 0.17479, p-value = 4.206e-09
 lillie.test(data$UP31)
-# D = 0.17479, p-value < 2.2e-16
 
 qqnorm(data$UP31, las=1, pch=18, 
        main="UP31 of the teachers", font.main=1,
@@ -5057,11 +4591,8 @@ qqnorm(data$UP31, las=1, pch=18,
 qqline(data$UP31)
 
 shapiro.test(data_col$UP31)
-# W = 0.90033, p-value = 3.105e-09
 ks.test(scale(data_col$UP31), "pnorm")
-# D = 0.16682, p-value = 0.0001739
 lillie.test(data_col$UP31)
-# D = 0.16682, p-value = 2.242e-12
 
 qqnorm(data_col$UP31, las=1, pch=18, 
        main="UP31 col of the teachers", font.main=1,
@@ -5069,11 +4600,8 @@ qqnorm(data_col$UP31, las=1, pch=18,
 qqline(data_col$UP31)
 
 shapiro.test(data_uclm$UP31)
-# W = 0.88669, p-value = 1.127e-09
 ks.test(scale(data_uclm$UP31), "pnorm")
-# D = 0.2004, p-value = 5.683e-06
 lillie.test(data_uclm$UP31)
-# D = 0.2004, p-value < 2.2e-16
 
 qqnorm(data_uclm$UP31, las=1, pch=18, 
        main="age uclm of the teachers", font.main=1,
@@ -5085,7 +4613,7 @@ wilcox.test(data_col$UP31,
             data_uclm$UP31,paired = F,
             exact = F,correct = T,conf.int = 0.95)
 
-# W = 13956, p-value = 0.47
+# W = 16668, p-value = 6e-05
 # result of the non-parametric test
 # there are statistically significant differences
 
@@ -5101,9 +4629,6 @@ data %>%
             min = min(UP32),
             max = max(UP32))
 
-# n media    sd mediana   min   max
-# 327  2.60  1.23       3     1     5
-
 data %>%
   select(Paises,UP32)%>%
   na.omit()%>%
@@ -5115,18 +4640,11 @@ data %>%
             min = min(UP32),
             max = max(UP32))
 
-# Paises       n media    sd mediana   min   max
-# Colombia   168  2.63  1.22       3     1     5
-# España     159  2.56  1.26       2     1     5
-
 # statistical inference
 
 shapiro.test(data$UP32)
-# W = 0.8962, p-value = 3.765e-14
 ks.test(scale(data$UP32), "pnorm")
-# D = 0.17479, p-value = 4.206e-09
 lillie.test(data$UP32)
-# D = 0.17479, p-value < 2.2e-16
 
 qqnorm(data$UP32, las=1, pch=18, 
        main="UP32 of the teachers", font.main=1,
@@ -5134,11 +4652,8 @@ qqnorm(data$UP32, las=1, pch=18,
 qqline(data$UP32)
 
 shapiro.test(data_col$UP32)
-# W = 0.90033, p-value = 3.105e-09
 ks.test(scale(data_col$UP32), "pnorm")
-# D = 0.16682, p-value = 0.0001739
 lillie.test(data_col$UP32)
-# D = 0.16682, p-value = 2.242e-12
 
 qqnorm(data_col$UP32, las=1, pch=18, 
        main="UP32 col of the teachers", font.main=1,
@@ -5146,11 +4661,8 @@ qqnorm(data_col$UP32, las=1, pch=18,
 qqline(data_col$UP32)
 
 shapiro.test(data_uclm$UP32)
-# W = 0.88669, p-value = 1.127e-09
 ks.test(scale(data_uclm$UP32), "pnorm")
-# D = 0.2004, p-value = 5.683e-06
 lillie.test(data_uclm$UP32)
-# D = 0.2004, p-value < 2.2e-16
 
 qqnorm(data_uclm$UP32, las=1, pch=18, 
        main="age uclm of the teachers", font.main=1,
@@ -5162,7 +4674,7 @@ wilcox.test(data_col$UP32,
             data_uclm$UP32,paired = F,
             exact = F,correct = T,conf.int = 0.95)
 
-# W = 13956, p-value = 0.47
+# W = 16756, p-value = 4.215e-05
 # result of the non-parametric test
 # there are statistically significant differences
 
@@ -5178,9 +4690,6 @@ data %>%
             min = min(UP33),
             max = max(UP33))
 
-# n media    sd mediana   min   max
-# 327  2.60  1.23       3     1     5
-
 data %>%
   select(Paises,UP33)%>%
   na.omit()%>%
@@ -5192,18 +4701,11 @@ data %>%
             min = min(UP33),
             max = max(UP33))
 
-# Paises       n media    sd mediana   min   max
-# Colombia   168  2.63  1.22       3     1     5
-# España     159  2.56  1.26       2     1     5
-
 # statistical inference
 
 shapiro.test(data$UP33)
-# W = 0.8962, p-value = 3.765e-14
 ks.test(scale(data$UP33), "pnorm")
-# D = 0.17479, p-value = 4.206e-09
 lillie.test(data$UP33)
-# D = 0.17479, p-value < 2.2e-16
 
 qqnorm(data$UP33, las=1, pch=18, 
        main="UP33 of the teachers", font.main=1,
@@ -5211,11 +4713,8 @@ qqnorm(data$UP33, las=1, pch=18,
 qqline(data$UP33)
 
 shapiro.test(data_col$UP33)
-# W = 0.90033, p-value = 3.105e-09
 ks.test(scale(data_col$UP33), "pnorm")
-# D = 0.16682, p-value = 0.0001739
 lillie.test(data_col$UP33)
-# D = 0.16682, p-value = 2.242e-12
 
 qqnorm(data_col$UP33, las=1, pch=18, 
        main="UP33 col of the teachers", font.main=1,
@@ -5223,11 +4722,8 @@ qqnorm(data_col$UP33, las=1, pch=18,
 qqline(data_col$UP33)
 
 shapiro.test(data_uclm$UP33)
-# W = 0.88669, p-value = 1.127e-09
 ks.test(scale(data_uclm$UP33), "pnorm")
-# D = 0.2004, p-value = 5.683e-06
 lillie.test(data_uclm$UP33)
-# D = 0.2004, p-value < 2.2e-16
 
 qqnorm(data_uclm$UP33, las=1, pch=18, 
        main="age uclm of the teachers", font.main=1,
@@ -5239,7 +4735,7 @@ wilcox.test(data_col$UP33,
             data_uclm$UP33,paired = F,
             exact = F,correct = T,conf.int = 0.95)
 
-# W = 13956, p-value = 0.47
+# W = 16424, p-value = 5.93e-05
 # result of the non-parametric test
 # there are statistically significant differences
 
@@ -5255,9 +4751,6 @@ data %>%
             min = min(UP34),
             max = max(UP34))
 
-# n media    sd mediana   min   max
-# 327  2.60  1.23       3     1     5
-
 data %>%
   select(Paises,UP34)%>%
   na.omit()%>%
@@ -5269,18 +4762,11 @@ data %>%
             min = min(UP34),
             max = max(UP34))
 
-# Paises       n media    sd mediana   min   max
-# Colombia   168  2.63  1.22       3     1     5
-# España     159  2.56  1.26       2     1     5
-
 # statistical inference
 
 shapiro.test(data$UP34)
-# W = 0.8962, p-value = 3.765e-14
 ks.test(scale(data$UP34), "pnorm")
-# D = 0.17479, p-value = 4.206e-09
 lillie.test(data$UP34)
-# D = 0.17479, p-value < 2.2e-16
 
 qqnorm(data$UP34, las=1, pch=18, 
        main="UP34 of the teachers", font.main=1,
@@ -5288,11 +4774,8 @@ qqnorm(data$UP34, las=1, pch=18,
 qqline(data$UP34)
 
 shapiro.test(data_col$UP34)
-# W = 0.90033, p-value = 3.105e-09
 ks.test(scale(data_col$UP34), "pnorm")
-# D = 0.16682, p-value = 0.0001739
 lillie.test(data_col$UP34)
-# D = 0.16682, p-value = 2.242e-12
 
 qqnorm(data_col$UP34, las=1, pch=18, 
        main="UP34 col of the teachers", font.main=1,
@@ -5300,11 +4783,8 @@ qqnorm(data_col$UP34, las=1, pch=18,
 qqline(data_col$UP34)
 
 shapiro.test(data_uclm$UP34)
-# W = 0.88669, p-value = 1.127e-09
 ks.test(scale(data_uclm$UP34), "pnorm")
-# D = 0.2004, p-value = 5.683e-06
 lillie.test(data_uclm$UP34)
-# D = 0.2004, p-value < 2.2e-16
 
 qqnorm(data_uclm$UP34, las=1, pch=18, 
        main="age uclm of the teachers", font.main=1,
@@ -5316,7 +4796,7 @@ wilcox.test(data_col$UP34,
             data_uclm$UP34,paired = F,
             exact = F,correct = T,conf.int = 0.95)
 
-# W = 13956, p-value = 0.47
+# W = 8695, p-value = 7.925e-08
 # result of the non-parametric test
 # there are statistically significant differences
 
@@ -5332,9 +4812,6 @@ data %>%
             min = min(UP35),
             max = max(UP35))
 
-# n media    sd mediana   min   max
-# 327  2.60  1.23       3     1     5
-
 data %>%
   select(Paises,UP35)%>%
   na.omit()%>%
@@ -5346,18 +4823,11 @@ data %>%
             min = min(UP35),
             max = max(UP35))
 
-# Paises       n media    sd mediana   min   max
-# Colombia   168  2.63  1.22       3     1     5
-# España     159  2.56  1.26       2     1     5
-
 # statistical inference
 
 shapiro.test(data$UP35)
-# W = 0.8962, p-value = 3.765e-14
 ks.test(scale(data$UP35), "pnorm")
-# D = 0.17479, p-value = 4.206e-09
 lillie.test(data$UP35)
-# D = 0.17479, p-value < 2.2e-16
 
 qqnorm(data$UP35, las=1, pch=18, 
        main="UP35 of the teachers", font.main=1,
@@ -5365,11 +4835,8 @@ qqnorm(data$UP35, las=1, pch=18,
 qqline(data$UP35)
 
 shapiro.test(data_col$UP35)
-# W = 0.90033, p-value = 3.105e-09
 ks.test(scale(data_col$UP35), "pnorm")
-# D = 0.16682, p-value = 0.0001739
 lillie.test(data_col$UP35)
-# D = 0.16682, p-value = 2.242e-12
 
 qqnorm(data_col$UP35, las=1, pch=18, 
        main="UP35 col of the teachers", font.main=1,
@@ -5377,11 +4844,8 @@ qqnorm(data_col$UP35, las=1, pch=18,
 qqline(data_col$UP35)
 
 shapiro.test(data_uclm$UP35)
-# W = 0.88669, p-value = 1.127e-09
 ks.test(scale(data_uclm$UP35), "pnorm")
-# D = 0.2004, p-value = 5.683e-06
 lillie.test(data_uclm$UP35)
-# D = 0.2004, p-value < 2.2e-16
 
 qqnorm(data_uclm$UP35, las=1, pch=18, 
        main="age uclm of the teachers", font.main=1,
@@ -5393,7 +4857,7 @@ wilcox.test(data_col$UP35,
             data_uclm$UP35,paired = F,
             exact = F,correct = T,conf.int = 0.95)
 
-# W = 13956, p-value = 0.47
+# W = 12070, p-value = 0.1756
 # result of the non-parametric test
 # there are statistically significant differences
 
